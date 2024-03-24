@@ -25,7 +25,7 @@ const CustomTextField: React.FC<CustomTextField> = ({
             borderRadius: "10px",
           },
           "& input": {
-            padding: "0 20px 0px 40px",
+            padding: `${customStyles.padding ? customStyles.padding : "0 20px 0px 40px"}`,
             height: `${customStyles.height}`,
             backgroundColor: "rgba(240, 243, 238, 1)",
             border: "none",
@@ -44,7 +44,7 @@ const CustomTextField: React.FC<CustomTextField> = ({
         src={icon}
         sx={{
           position: "absolute",
-          top: "50%",
+          top: `${customStyles.iconTopPosition ? customStyles.iconTopPosition : "50%"}`,
           left: "10px",
           width: `${customStyles.iconWidth}`,
           height: `${customStyles.iconHeight}`,

@@ -1,4 +1,4 @@
-// import React from "react";
+import React from "react";
 import {
   Table,
   TableHead,
@@ -9,14 +9,16 @@ import {
   TableBody,
   Box,
 } from "@mui/material";
-import React from "react";
 
-interface BanksTableProps{
-    banksData?: any;
-    tableHeadings?: string[]
+interface BanksTableProps {
+  banksData?: any;
+  tableHeadings?: string[];
 }
 
-const BanksTable: React.FC<BanksTableProps> = ({banksData, tableHeadings}) => {
+const BanksTable: React.FC<BanksTableProps> = ({
+  banksData,
+  tableHeadings,
+}) => {
   return (
     <TableContainer
       component={Paper}
@@ -59,8 +61,6 @@ const BanksTable: React.FC<BanksTableProps> = ({banksData, tableHeadings}) => {
               </TableCell>
               <TableCell
                 sx={{
-                  //   display: "flex",
-                  //   justifyContent: "center",
                   fontSize: "20px",
                 }}
               >

@@ -56,3 +56,17 @@ td {
 .layout-nav {
   width: 17%;
 }
+
+.unmatched-deposit-table-main::-webkit-scrollbar {
+  /* background-color: rgba(0, 86, 64, 0.65); */
+  width: 11px;
+}
+
+.unmatched-deposit-table-main::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+.unmatched-deposit-table-main::-webkit-scrollbar-thumb {
+  background: rgba(0, 86, 64, 0.65);
+  border-radius: 4px;
+}
