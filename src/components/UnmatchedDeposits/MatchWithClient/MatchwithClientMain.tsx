@@ -1,11 +1,14 @@
 import Layout from "../../Layout";
 import { Box, Typography } from "@mui/material";
 import MatchWithClientHeader from "./MatchWithClientHeader";
+import MatchWithClientSearchFields from "./MatchWithClientSearchFields";
+import UiCard from "../../UiCard";
+import MatchWithClientMainTable from "./MatchWithClientMainTable";
 
 const MatchwithClientMain = () => {
   return (
     <Layout>
-      <Box sx={{ maxWidth: "90%", m: "0 auto" }}>
+      <Box sx={{ maxWidth: "90%", m: "0px auto" }}>
         <Typography
           variant="h1"
           sx={{
@@ -19,9 +22,32 @@ const MatchwithClientMain = () => {
         >
           Unmatched deposits
         </Typography>
-        <Box>
-          <MatchWithClientHeader />
-        </Box>
+        <UiCard>
+          <Box>
+            <MatchWithClientHeader />
+          </Box>
+          <Box sx={{ p: "0px 30px 40px" }}>
+            <Box sx={{ m: "40px 0px" }}>
+              <MatchWithClientSearchFields />
+            </Box>
+            <Box>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontSize: "24px",
+                  lineHeight: "28.8px",
+                  fontWeight: "700",
+                  color: "#005640",
+                  mb: "20px",
+                  textTransform: "uppercase",
+                }}
+              >
+                POTENTIAL MATCHES
+              </Typography>
+              <MatchWithClientMainTable />
+            </Box>
+          </Box>
+        </UiCard>
       </Box>
     </Layout>
   );

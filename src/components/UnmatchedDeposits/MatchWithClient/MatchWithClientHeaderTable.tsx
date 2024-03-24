@@ -31,7 +31,6 @@ const MatchWithClientHeaderTable = () => {
       component={Paper}
       className="unmatched-deposit-table-main"
       sx={{
-        // p: "20px 15px",
         boxSizing: "border-box",
         boxShadow: "0",
         backgroundColor: "transparent",

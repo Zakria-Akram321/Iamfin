@@ -1,10 +1,9 @@
-import UiCard from "../../UiCard";
 import { Box, Typography } from "@mui/material";
 import MatchWithClientHeaderTable from "./MatchWithClientHeaderTable";
 
 const MatchWithClientHeader = () => {
   return (
-    <UiCard>
+    <Box>
       <Box
         sx={{
           background: "rgba(0, 86, 64, 1)",
@@ -29,7 +28,7 @@ const MatchWithClientHeader = () => {
           <MatchWithClientHeaderTable />
         </Box>
       </Box>
-    </UiCard>
+    </Box>
   );
 };
 

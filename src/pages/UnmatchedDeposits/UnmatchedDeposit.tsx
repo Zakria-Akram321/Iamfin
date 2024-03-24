@@ -111,12 +111,89 @@ const rows = [
     currency: "GBP",
     amount: 20000,
   },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
 ];
 
 export default function UnmatchedDeposit() {
   return (
     <Layout>
-      <Box sx={{ maxWidth: "90%", margin: "0 auto" }}>
+      <Box sx={{ maxWidth: "90%", margin: "0px auto" }}>
         <Typography
           variant="h1"
           sx={{

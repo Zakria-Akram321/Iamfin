@@ -1,29 +1,27 @@
-import {Box } from '@mui/material';
-import logo from '../Assets/Logo.png'
-import arrow from '../Assets/Expand_down_light.png'
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
-import Typography from '@mui/material/Typography';
-import profile from '../Assets/User_cicrle_light.png';
-import { Link , useLocation} from 'react-router-dom';
-import { Toolbar } from '@mui/material';
+import { Box } from "@mui/material";
+import logo from "../Assets/Logo.png";
+import arrow from "../Assets/Expand_down_light.png";
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import MenuIcon from "@mui/icons-material/Menu";
+import Typography from "@mui/material/Typography";
+import profile from "../Assets/User_cicrle_light.png";
+import { Link, useLocation } from "react-router-dom";
+import { Toolbar } from "@mui/material";
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 interface Props {
   window?: () => Window;
 }
 
 export default function SideDrawer(props: Props) {
-
-
   const location = useLocation();
 
   const { window } = props;
@@ -35,32 +33,59 @@ export default function SideDrawer(props: Props) {
 
   const drawer = (
     <div>
-      <img src={logo} width="191px" style={{ marginTop: "27px", marginLeft: "15px" }} />
-      <List sx={{ paddingX: "50px", marginTop: '35px' }}>
-        {['Dashboard', 'Reports', 'Unmatched', 'Matched', 'Withdraw', 'Profiles', 'Banks', 'Fees', 'UserRights', 'Settings', 'Archive'].map((text, index) => (
-          <ListItem key={index} disablePadding sx={{justifyContent: "flex-end"}}
+      <img
+        src={logo}
+        width="191px"
+        style={{ marginTop: "27px", marginLeft: "15px" }}
+      />
+      <List sx={{ paddingX: "50px", marginTop: "35px" }}>
+        {[
+          "Dashboard",
+          "Reports",
+          "Unmatched",
+          "Matched",
+          "Withdraw",
+          "Profiles",
+          "Banks",
+          "Fees",
+          "UserRights",
+          "Settings",
+          "Archive",
+        ].map((text, index) => (
+          <ListItem
+            key={index}
+            disablePadding
+            sx={{ justifyContent: "flex-end" }}
           >
-            
-            <Link to={`/${text.toLowerCase()}`} style={{ textDecoration: 'none'}}>
-              <ListItemButton 
-               sx={{padding: '3px' ,  
-               transition: 'background-color 0.3s ease',
-               textAlign: "right",
-               fontFamily: "Lato",
-               fontSize: "26px",
-               fontWeight: 400,
-               textTransform: "capitalize",
-               backgroundColor: 'transparent' ,
-               color: location.pathname === `/${text.toLowerCase()}` ? "#00CE7E"  :'#14302A', 
-               '&:hover': { 
-                backgroundColor: 'transparent',
-                color:"#00CE7E" 
-              },
-
-              
-              }}
-             >
-                <ListItemText primary={text.toLowerCase() === 'userrights' ? 'User Rights' : text} />
+            <Link
+              to={`/${text.toLowerCase()}`}
+              style={{ textDecoration: "none" }}
+            >
+              <ListItemButton
+                sx={{
+                  padding: "3px",
+                  transition: "background-color 0.3s ease",
+                  textAlign: "right",
+                  fontFamily: "Lato",
+                  fontSize: "26px",
+                  fontWeight: 400,
+                  textTransform: "capitalize",
+                  backgroundColor: "transparent",
+                  color:
+                    location.pathname === `/${text.toLowerCase()}`
+                      ? "#00CE7E"
+                      : "#14302A",
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                    color: "#00CE7E",
+                  },
+                }}
+              >
+                <ListItemText
+                  primary={
+                    text.toLowerCase() === "userrights" ? "User Rights" : text
+                  }
+                />
               </ListItemButton>
             </Link>
           </ListItem>
@@ -79,7 +104,7 @@ export default function SideDrawer(props: Props) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
           backgroundColor: "White",
-          borderRadius: " 0px 0px 10px 10px",
+          borderRadius: " 0px 0px 10px 0px",
           boxShadow: "5px 0px 10px 0px rgba(30, 30, 30, 0.25)",
           height: "85px",
           alignItem: "center",
