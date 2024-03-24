@@ -1,20 +1,26 @@
 import { Box } from "@mui/material";
-import SideDrawal from "../../components/SideDrawer";
 import Typography from "@mui/material/Typography";
-import { Toolbar } from "@mui/material";
+import Layout from "../../components/Layout";
+import BanksMain from "../../components/Banks/BanksMain";
 
 export default function Bank() {
   return (
-    <Box sx={{ display: "flex" }}>
-      <SideDrawal />
-
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
-      >
-        <Toolbar />
-        <Typography paragraph>Bank</Typography>
+    <Layout>
+      <Box sx={{ maxWidth: "90%", margin: "0 auto" }}>
+        <Typography
+          variant="h1"
+          sx={{
+            fontSize: "40px",
+            lineHeight: "48px",
+            fontWeight: "700",
+            color: "#005640",
+            mb: "20px",
+          }}
+        >
+          Banks
+        </Typography>
+        <BanksMain />
       </Box>
-    </Box>
+    </Layout>
   );
 }
