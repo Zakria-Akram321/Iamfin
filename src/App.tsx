@@ -13,7 +13,8 @@ import Fee from "./pages/FeePage/Fee";
 import UserRights from "./pages/UserRights/UserRights";
 import Settings from "./pages/Settings/Settings";
 import Archive from "./pages/Archive/Archive";
-import BankData from "./pages/dashboard/components/BanksData";
+import MatchwithClientMain from "./components/UnmatchedDeposits/MatchWithClient/MatchwithClientMain";
+// import BankData from "./pages/dashboard/components/BanksData";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/userrights" element={<UserRights />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/archive" element={<Archive />} />
+          <Route path="/match-with-client" element={<MatchwithClientMain />} />
           <Route path="/*" element={<Navigate to={"/dashboard"} />} />
         </Routes>
       </BrowserRouter>
