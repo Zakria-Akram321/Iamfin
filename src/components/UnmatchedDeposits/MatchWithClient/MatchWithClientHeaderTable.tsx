@@ -9,19 +9,21 @@ import {
   TableBody,
   Box,
 } from "@mui/material";
-import CustomTextField from "../Banks/CustomTextField";
-import searchIcon from "../../Assets/Search.png";
-import { Link } from "react-router-dom";
+import searchIcon from "../../../Assets/search.png";
+import CustomTextField from "../../Banks/CustomTextField";
 
-interface UnmatchedDepositTableProps {
-  tableHeadings?: string[];
-  tableData?: any;
-}
+const tableHeading = ["date", "source", "reference", "currency", "amount"];
+const rows = [
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+];
 
-const UnmatchedDepositTable: React.FC<UnmatchedDepositTableProps> = ({
-  tableHeadings,
-  tableData,
-}) => {
+const MatchWithClientHeaderTable = () => {
   const [search, setSearch] = React.useState<string>("");
   console.log(search);
   return (
@@ -29,44 +31,48 @@ const UnmatchedDepositTable: React.FC<UnmatchedDepositTableProps> = ({
       component={Paper}
       className="unmatched-deposit-table-main"
       sx={{
-        p: "20px 15px",
+        // p: "20px 15px",
         boxSizing: "border-box",
         boxShadow: "0",
-        backgroundColor: "rgba(255, 255, 255, 1)",
+        backgroundColor: "transparent",
         maxHeight: "65vh",
         overflowY: "auto",
+        maxWidth: "1100px",
       }}
     >
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            {tableHeadings?.map((heading: string, index: number) => (
+            {tableHeading.map((heading: string, index: number) => (
               <TableCell
                 key={index}
                 sx={{
                   textTransform: "capitalize",
                   fontWeight: 700,
                   fontSize: "20px",
-                  color: "rgba(20, 48, 42, 1)",
+                  color: "white",
+                  border: "none !important",
+                  width: "20px",
+                  p: 0,
                 }}
               >
-                <>
-                  {heading === "reference" ? (
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      {heading}
+                {heading === "reference" ? (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    {heading}
+                    <Box sx={{ opacity: "0", zIndex: "-1" }}>
                       <CustomTextField
                         placeholder="Search"
                         name="search"
                         onChange={(e: any) => setSearch(e.target.value)}
                         icon={searchIcon}
                         customStyles={{
-                          width: "190px",
+                          width: "50px",
                           height: "30px",
                           iconHeight: "12px",
                           iconWidth: "12px",
@@ -75,30 +81,30 @@ const UnmatchedDepositTable: React.FC<UnmatchedDepositTableProps> = ({
                         }}
                       />
                     </Box>
-                  ) : (
-                    heading
-                  )}
-                </>
+                  </Box>
+                ) : (
+                  heading
+                )}
               </TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {tableData?.map((row: any, index: number) => (
-            <TableRow key={index} sx={{ height: "40px" }}>
+          {rows?.map((row: any, index: number) => (
+            <TableRow key={index} sx={{ height: "50px" }}>
               {Object.values(row).map((column: any, index: number) => (
-                <TableCell key={index} sx={{ fontSize: "15px" }}>
+                <TableCell
+                  key={index}
+                  sx={{
+                    fontSize: "16px",
+                    border: "none",
+                    color: "white",
+                    p: "0",
+                  }}
+                >
                   {column}
                 </TableCell>
               ))}
-              <TableCell>
-                <Link
-                  to="/match-with-client"
-                  style={{ color: "rgba(0, 86, 64, 1)", fontSize: "15px" }}
-                >
-                  Match
-                </Link>
-              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -107,4 +113,4 @@ const UnmatchedDepositTable: React.FC<UnmatchedDepositTableProps> = ({
   );
 };
 
-export default UnmatchedDepositTable;
+export default MatchWithClientHeaderTable;

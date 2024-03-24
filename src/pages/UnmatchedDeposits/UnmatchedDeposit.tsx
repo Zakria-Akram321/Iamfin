@@ -4,6 +4,115 @@ import Layout from "../../components/Layout";
 import UiCard from "../../components/UiCard";
 import UnmatchedDepositTable from "../../components/UnmatchedDeposits/UnmatchedDepositTable";
 
+const tableHeading = ["date", "source", "reference", "currency", "amount", ""];
+const rows = [
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+  {
+    date: "01 Jan 2023",
+    source: "Text Field",
+    reference: "TextField",
+    currency: "GBP",
+    amount: 20000,
+  },
+];
+
 export default function UnmatchedDeposit() {
   return (
     <Layout>
@@ -22,7 +131,10 @@ export default function UnmatchedDeposit() {
           Unmatched deposits
         </Typography>
         <UiCard padding="30px 20px" maxHeight="65vh">
-          <UnmatchedDepositTable />
+          <UnmatchedDepositTable
+            tableHeadings={tableHeading}
+            tableData={rows}
+          />
         </UiCard>
       </Box>
     </Layout>
