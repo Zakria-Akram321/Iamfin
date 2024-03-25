@@ -36,7 +36,7 @@ export default function SideDrawer(props: Props) {
       <img
         src={logo}
         width="191px"
-        style={{ marginTop: "27px", marginLeft: "15px" }}
+        style={{ marginTop: "27px", marginLeft: "0px" }}
       />
       <List sx={{ paddingX: "50px", marginTop: "35px" }}>
         {[
