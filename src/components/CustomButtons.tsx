@@ -5,8 +5,8 @@ interface CustomButtons {
   successButtonText: string;
   declineButtonText: string;
   customStyle: { [key: string]: string };
-  onSuccessButtonClick: () => void;
-  onDeclineButtonClick: () => void;
+  onSuccessButtonClick: (e?: any) => void;
+  onDeclineButtonClick: (e?: any) => void;
 }
 
 const CustomButtons: React.FC<CustomButtons> = ({
