@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import CustomButtons from "../CustomButtons";
 import React from "react";
-import FilterIcon from "../../../public/assets/filter_big.png";
+import FilterIcon from "../../Assets/filter_big.png";
 import CustomTextField from "./CustomTextField";
 import CustomModal from "../CustomModal";
 import AddBanksModal from "./AddBanksModal";
