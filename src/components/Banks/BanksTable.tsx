@@ -151,7 +151,7 @@ const BanksTable: React.FC<BanksTableProps> = ({
       </TableContainer>
       {openModal && (
         <CustomModal open={openModal} handleClose={handleModalClose}>
-          <ViewSendBanksModal />
+          <ViewSendBanksModal setOpenModal={setOpenModal} />
         </CustomModal>
       )}
     </>

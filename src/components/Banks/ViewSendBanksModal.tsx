@@ -12,7 +12,7 @@ const initialValues = {
   swiftIban: "",
 };
 
-const ViewSendBanksModal = () => {
+const ViewSendBanksModal = ({ setOpenModal }: any) => {
   const [formValues, setFormValues] = React.useState(initialValues);
   const handleChange = (e: any) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
@@ -22,6 +22,7 @@ const ViewSendBanksModal = () => {
     e.preventDefault();
   };
   const closeClickHandler = (e: any) => {
+    setOpenModal(false);
     e.preventDefault();
   };
 
@@ -138,11 +139,7 @@ const ViewSendBanksModal = () => {
           />
         </Grid>
       </Grid>
-      <Grid
-        container
-        justifyContent="space-between"
-        mb="10px"
-      >
+      <Grid container justifyContent="space-between" mb="10px">
         <Grid item xs={5.9} sx={{ textAlign: "right" }}>
           <Typography sx={{ color: "rgba(20, 48, 42, 1)", fontSize: "18px" }}>
             Bank Address:

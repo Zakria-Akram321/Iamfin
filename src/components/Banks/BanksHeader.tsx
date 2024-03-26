@@ -6,6 +6,7 @@ import CustomTextField from "./CustomTextField";
 import CustomModal from "../CustomModal";
 import AddBanksModal from "./AddBanksModal";
 import DeleteBanksModal from "./DeleteBankModal";
+import ConfirmDeleteAccount from "./ConfirmDeleteAccount";
 
 const BanksHeader = () => {
   const [filterByCountry, setFilterByCountry] = React.useState<string>("");
@@ -13,18 +14,26 @@ const BanksHeader = () => {
   const [showModal, setShowModal] = React.useState<string>("");
   const [addOpen, setAddOpen] = React.useState<boolean>(false);
   const [deleteOpen, setDeleteOpen] = React.useState<boolean>(false);
+  const [openConfirmDeleteModal, setOpenConfirmDeleteModal] =
+    React.useState(false);
+
+  console.log(showModal);
+
+  const handleConfirmDeleteModalClose = () => {
+    setOpenConfirmDeleteModal(false);
+  };
   const addClickHandler = () => {
     setShowModal("add");
     setAddOpen(true);
   };
   const deleteClickHandler = () => {
-    setShowModal("delete")
-    setDeleteOpen(true)
+    setShowModal("delete");
+    setDeleteOpen(true);
   };
 
   const handleModalClose = () => {
     setAddOpen(false);
-    setDeleteOpen(false)
+    setDeleteOpen(false);
   };
 
   console.log("filterByBank", filterByBank);
@@ -89,20 +98,21 @@ const BanksHeader = () => {
         />
       </Box>
       {showModal === "add" && (
-        <CustomModal
-          open={addOpen}
-          handleClose={handleModalClose}
-        >
-          <AddBanksModal />
+        <CustomModal open={addOpen} handleClose={handleModalClose}>
+          <AddBanksModal setShowModal={setShowModal} />
         </CustomModal>
       )}
       {showModal === "delete" && (
-        <CustomModal
-          open={deleteOpen}
-          handleClose={handleModalClose}
-        >
-          <DeleteBanksModal />
+        <CustomModal open={deleteOpen} handleClose={handleModalClose}>
+          <DeleteBanksModal setShowModal={setShowModal} setConfirmDeleteModal={setOpenConfirmDeleteModal} />
         </CustomModal>
+      )}
+      {showModal === "confirmDelete" && (
+        <ConfirmDeleteAccount
+          open={openConfirmDeleteModal}
+          handleClose={handleConfirmDeleteModalClose}
+          setShowModal = {setShowModal}
+        />
       )}
     </>
   );

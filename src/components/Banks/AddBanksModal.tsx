@@ -20,7 +20,7 @@ const initialValues = {
   swiftIban: "",
 };
 
-const AddBanksModal = () => {
+const AddBanksModal = ({setShowModal}: any) => {
   const [formValues, setFormValues] = React.useState(initialValues);
   const handleChange = (e: any) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
@@ -30,6 +30,7 @@ const AddBanksModal = () => {
     e.preventDefault();
   };
   const cancelClickHandler = (e: any) => {
+    setShowModal("");
     e.preventDefault();
   };
 
