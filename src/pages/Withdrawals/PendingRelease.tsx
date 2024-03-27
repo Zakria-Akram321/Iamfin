@@ -7,7 +7,6 @@ import {
   TableContainer,
   Paper,
 } from "@mui/material";
-import TableComponent from "../../components/TableComponent";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 import CloseIcon from "@mui/icons-material/Close";

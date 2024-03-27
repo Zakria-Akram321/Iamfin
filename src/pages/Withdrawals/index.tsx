@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import UiCard from "../../components/UiCard";
 import PendingRelease from "./PendingRelease";
 import DeclinedWithdrawal from "./DeclinedWithdrawal";
 import Layout from "../../components/Layout";
