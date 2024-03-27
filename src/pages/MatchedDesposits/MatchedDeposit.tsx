@@ -5,6 +5,7 @@ import {
   TableBody,
   TableContainer,
   TableHead,
+  useMediaQuery,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -129,6 +130,10 @@ const MatchedDeposit = () => {
 
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalType, setModalType] = React.useState("");
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
+
   const handleDeclineModalOpen = () => {
     setModalOpen(true);
     setModalType("decline-modal");
@@ -147,15 +152,20 @@ const MatchedDeposit = () => {
 
   return (
     <Layout>
-      <Box sx={{ maxWidth: "90%", margin: "0 auto" }}>
+      <Box
+        sx={{
+          maxWidth: "90%",
+          margin: mediumScreen ? "0px 20px 0px auto" : "0 auto",
+        }}
+      >
         <Typography
           variant="h1"
           sx={{
-            fontSize: "40px",
+            fontSize: mediumScreen ? "28px" : "40px",
             lineHeight: "48px",
             fontWeight: "700",
             color: "#005640",
-            mb: "20px",
+            mb: mediumScreen ? "15px" : "20px",
           }}
         >
           Matched Desposit

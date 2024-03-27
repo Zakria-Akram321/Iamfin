@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, useMediaQuery } from "@mui/material";
 import React from "react";
 import CustomTextField from "../../Banks/CustomTextField";
 
@@ -12,6 +12,9 @@ const initialValues = {
 
 const MatchWithClientSearchFields: React.FC = () => {
   const [formValues, setFormValues] = React.useState<any>(initialValues);
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
 
   const formChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
@@ -23,7 +26,8 @@ const MatchWithClientSearchFields: React.FC = () => {
           placeholder="Search by name"
           name="name1"
           customStyles={{
-            height: "40px",
+            height: mediumScreen ? "30px" : "40px",
+            fontSize: mediumScreen ? "12px" : "16px",
             padding: "0px 20px",
             borderRadius: "10px",
           }}
@@ -35,7 +39,8 @@ const MatchWithClientSearchFields: React.FC = () => {
           placeholder="Search by name"
           name="name2"
           customStyles={{
-            height: "40px",
+            height: mediumScreen ? "30px" : "40px",
+            fontSize: mediumScreen ? "12px" : "16px",
             padding: "0px 20px",
             borderRadius: "10px",
           }}
@@ -47,7 +52,8 @@ const MatchWithClientSearchFields: React.FC = () => {
           placeholder="Search by name"
           name="name3"
           customStyles={{
-            height: "40px",
+            height: mediumScreen ? "30px" : "40px",
+            fontSize: mediumScreen ? "12px" : "16px",
             padding: "0px 20px",
             borderRadius: "10px",
           }}
@@ -59,7 +65,8 @@ const MatchWithClientSearchFields: React.FC = () => {
           placeholder="Search by name"
           name="name4"
           customStyles={{
-            height: "40px",
+            height: mediumScreen ? "30px" : "40px",
+            fontSize: mediumScreen ? "12px" : "16px",
             padding: "0px 20px",
             borderRadius: "10px",
           }}
@@ -71,7 +78,8 @@ const MatchWithClientSearchFields: React.FC = () => {
           placeholder="Search by name"
           name="name5"
           customStyles={{
-            height: "40px",
+            height: mediumScreen ? "30px" : "40px",
+            fontSize: mediumScreen ? "12px" : "16px",
             padding: "0px 20px",
             borderRadius: "10px",
           }}
@@ -85,9 +93,11 @@ const MatchWithClientSearchFields: React.FC = () => {
             boxShadow: "4px 4px 4px 0px rgba(0, 0, 0, 0.1)",
             backgroundColor: "rgba(0, 206, 126, 1)",
             borderRadius: "10px",
-            width: "127px",
-            height: "40px",
+            width: mediumScreen ? "100px" : "127px",
+            height: mediumScreen ? "30px" : "40px",
             textTransform: "uppercase",
+            fontWeight: "700",
+            fontSize: mediumScreen ? "12px" : "16px",
           }}
         >
           Search

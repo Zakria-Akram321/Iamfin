@@ -25,7 +25,7 @@ const UnmatchedDepositTable: React.FC<UnmatchedDepositTableProps> = ({
 }) => {
   const [search, setSearch] = React.useState<string>("");
   const mediumScreen = useMediaQuery(
-    "(min-width: 1200px) and (max-width:1500px)"
+    "(min-width: 1100px) and (max-width:1500px)"
   );
   console.log(search);
   return (

@@ -3,7 +3,7 @@ import SideDrawer from "./SideDrawer";
 
 const Layout = (props: any) => {
   const mediumScreen = useMediaQuery(
-    "(min-width: 1200px) and (max-width:1500px)"
+    "(min-width: 1100px) and (max-width:1500px)"
   );
   return (
     <div className="layout-main-flex">

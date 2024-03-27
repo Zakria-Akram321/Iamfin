@@ -27,7 +27,7 @@ export default function SideDrawer(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const mediumScreen = useMediaQuery(
-    "(min-width: 1200px) and (max-width:1500px)"
+    "(min-width: 1100px) and (max-width:1500px)"
   );
 
   const handleDrawerToggle = () => {
@@ -38,7 +38,7 @@ export default function SideDrawer(props: Props) {
     <div>
       <img
         src={logo}
-        width="191px"
+        width={mediumScreen ? "160px" : "191px"}
         style={{ marginTop: "27px", marginLeft: "0px" }}
       />
       <List sx={{ paddingX: "50px", marginTop: "35px" }}>
@@ -70,7 +70,6 @@ export default function SideDrawer(props: Props) {
                   transition: "background-color 0.3s ease",
                   textAlign: "right",
                   fontFamily: "Lato",
-                  fontSize: "26px",
                   fontWeight: 400,
                   textTransform: "capitalize",
                   backgroundColor: "transparent",
@@ -85,6 +84,11 @@ export default function SideDrawer(props: Props) {
                 }}
               >
                 <ListItemText
+                  sx={{
+                    "& span": {
+                      fontSize: mediumScreen ? "16px" : "20px",
+                    },
+                  }}
                   primary={
                     text.toLowerCase() === "userrights" ? "User Rights" : text
                   }

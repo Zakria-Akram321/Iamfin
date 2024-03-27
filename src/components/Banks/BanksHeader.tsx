@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import CustomButtons from "../CustomButtons";
 import React from "react";
 import FilterIcon from "../../Assets/filter_big.png";
@@ -16,6 +16,9 @@ const BanksHeader = () => {
   const [deleteOpen, setDeleteOpen] = React.useState<boolean>(false);
   const [openConfirmDeleteModal, setOpenConfirmDeleteModal] =
     React.useState(false);
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
 
   console.log(showModal);
 
@@ -61,10 +64,11 @@ const BanksHeader = () => {
               onChange={(e: any) => setFilterByCountry(e.target.value)}
               icon={FilterIcon}
               customStyles={{
-                width: "259px",
-                height: "40px",
-                iconHeight: "24px",
-                iconWidth: "24px",
+                width: mediumScreen ? "200px" : "259px",
+                height: mediumScreen ? "35px" : "40px",
+                iconHeight: mediumScreen ? "18px" : "24px",
+                iconWidth: mediumScreen ? "18px" : "24px",
+                fontSize: mediumScreen ? "12px" : "16px",
               }}
             />
             <CustomTextField
@@ -73,10 +77,11 @@ const BanksHeader = () => {
               onChange={(e: any) => setFilterByBank(e.target.value)}
               icon={FilterIcon}
               customStyles={{
-                width: "259px",
-                height: "40px",
-                iconHeight: "24px",
-                iconWidth: "24px",
+                width: mediumScreen ? "200px" : "259px",
+                height: mediumScreen ? "35px" : "40px",
+                iconHeight: mediumScreen ? "18px" : "24px",
+                iconWidth: mediumScreen ? "18px" : "24px",
+                fontSize: mediumScreen ? "12px" : "16px",
               }}
             />
           </Box>
@@ -87,9 +92,9 @@ const BanksHeader = () => {
             successButtonHoverColor: "rgba(0, 176, 96, 1)",
             declineBackgroundColor: "rgba(170, 50, 45, 1)",
             declineButtonHoverColor: "rgba(140, 30, 25, 1)",
-            height: "40px",
-            width: "100px",
-            fontSize: "16px",
+            height: mediumScreen ? "35px" : "40px",
+            width: mediumScreen ? "90px" : "100px",
+            fontSize: mediumScreen ? "14px" : "16px",
           }}
           successButtonText="add"
           declineButtonText="delete"
@@ -104,14 +109,17 @@ const BanksHeader = () => {
       )}
       {showModal === "delete" && (
         <CustomModal open={deleteOpen} handleClose={handleModalClose}>
-          <DeleteBanksModal setShowModal={setShowModal} setConfirmDeleteModal={setOpenConfirmDeleteModal} />
+          <DeleteBanksModal
+            setShowModal={setShowModal}
+            setConfirmDeleteModal={setOpenConfirmDeleteModal}
+          />
         </CustomModal>
       )}
       {showModal === "confirmDelete" && (
         <ConfirmDeleteAccount
           open={openConfirmDeleteModal}
           handleClose={handleConfirmDeleteModalClose}
-          setShowModal = {setShowModal}
+          setShowModal={setShowModal}
         />
       )}
     </>

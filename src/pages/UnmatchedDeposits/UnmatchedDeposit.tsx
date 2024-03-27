@@ -192,7 +192,7 @@ const rows = [
 
 export default function UnmatchedDeposit() {
   const mediumScreen = useMediaQuery(
-    "(min-width: 1200px) and (max-width:1500px)"
+    "(min-width: 1100px) and (max-width:1500px)"
   );
   return (
     <Layout>

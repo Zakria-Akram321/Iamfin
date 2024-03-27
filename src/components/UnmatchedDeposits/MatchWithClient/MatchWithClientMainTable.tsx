@@ -9,6 +9,7 @@ import {
   TableBody,
   Box,
   Button,
+  useMediaQuery,
 } from "@mui/material";
 import ReasonForMatchModal from "../ReasonForMatchModal";
 
@@ -129,6 +130,9 @@ const rows = [
 ];
 
 const MatchWithClientMainTable: React.FC = () => {
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
   const [modalOpen, setModalOpen] = React.useState(false);
 
   const matchClickHandler = () => {
@@ -170,10 +174,16 @@ const MatchWithClientMainTable: React.FC = () => {
                     sx={{
                       textTransform: "capitalize",
                       fontWeight: 700,
-                      fontSize: "20px",
+                      fontSize: mediumScreen ? "15px" : "20px",
                       color: "rgba(20, 48, 42, 1)",
                       textAlign: `${column === "Match" ? "right" : "left"}`,
-                      width: `${column === "Match" ? "230px" : "auto"}`,
+                      width: `${
+                        column === "Match"
+                          ? mediumScreen
+                            ? "170px"
+                            : "230px"
+                          : "auto"
+                      }`,
                     }}
                   >
                     {column}
@@ -183,9 +193,15 @@ const MatchWithClientMainTable: React.FC = () => {
             </TableHead>
             <TableBody>
               {rows?.map((row: any, index: number) => (
-                <TableRow key={index} sx={{ height: "50px" }}>
+                <TableRow
+                  key={index}
+                  sx={{ height: mediumScreen ? "40px" : "50px" }}
+                >
                   {Object.values(row).map((column: any, index: number) => (
-                    <TableCell key={index} sx={{ fontSize: "20px" }}>
+                    <TableCell
+                      key={index}
+                      sx={{ fontSize: mediumScreen ? "14px" : "20px" }}
+                    >
                       {column}
                     </TableCell>
                   ))}
@@ -196,10 +212,10 @@ const MatchWithClientMainTable: React.FC = () => {
                         boxShadow: "4px 4px 4px 0px rgba(0, 0, 0, 0.1)",
                         backgroundColor: "rgba(0, 206, 126, 1)",
                         borderRadius: "2px",
-                        width: "75px",
-                        height: "30px",
+                        width: mediumScreen ? "60px" : "75px",
+                        height: mediumScreen ? "20px" : "30px",
                         textTransform: "uppercase",
-                        fontSize: "12px",
+                        fontSize: mediumScreen ? "10px" : "12px",
                       }}
                       onClick={matchClickHandler}
                     >

@@ -37,6 +37,9 @@ const CustomTextField: React.FC<CustomTextField> = ({
             borderRadius: `${
               customStyles?.borderRadius ? customStyles.borderRadius : "0"
             }`,
+            fontSize: `${
+              customStyles?.fontSize ? customStyles.fontSize : "16px"
+            }`,
           },
           "& .MuiOutlinedInput-notchedOutline": {
             border: "none",

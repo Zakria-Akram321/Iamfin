@@ -1,4 +1,11 @@
-import { Box, Button, TextField, Typography, styled } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  styled,
+  useMediaQuery,
+} from "@mui/material";
 import React from "react";
 import CustomSmallModal from "../CustomSmallModal";
 import CustomButtons from "../CustomButtons";
@@ -28,7 +35,11 @@ const ReasonForMatchModal: React.FC<ReasonForMatchModalProps> = ({
   setModalOpen,
 }) => {
   const [proofOfPayment, setProofOfPayment] = React.useState<any>(null);
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
   console.log(proofOfPayment);
+
   const matchClickHandler = () => {};
   const cancelClickHandler = () => {
     setModalOpen(false);
@@ -42,21 +53,21 @@ const ReasonForMatchModal: React.FC<ReasonForMatchModalProps> = ({
         iconImage={iconImage}
         title="Match Details"
         style={{
-          pt: 9,
-          pr: 8,
-          pl: 8,
-          pb: 9,
+          pt: mediumScreen ? 7 : 9,
+          pr: mediumScreen ? 7 : 8,
+          pl: mediumScreen ? 7 : 8,
+          pb: mediumScreen ? 7 : 9,
         }}
       >
         <Box>
           <Box sx={{ textAlign: "center", mb: "30px" }}>
-            <Typography mb="15px" fontSize="18px">
+            <Typography mb="15px" fontSize={mediumScreen ? "14px" : "18px"}>
               Please provide a reason for client / deposit match:
             </Typography>
             <TextField
               placeholder="Sample Text"
               multiline
-              rows={3.8}
+              rows={mediumScreen ? 3 : 3.8}
               sx={{
                 backgroundColor: "rgba(240, 243, 238, 1)",
                 boxShadow: "4px 4px 4px 0px rgba(0, 0, 0, 0.02)",
@@ -69,10 +80,11 @@ const ReasonForMatchModal: React.FC<ReasonForMatchModalProps> = ({
                 },
                 "& textarea": {
                   p: "0",
-                  width: "427px",
+                  width: mediumScreen ? "350px" : "427px",
                   color: "rgba(20, 48, 42, 1)",
                   padding: "10px 12px",
                   boxSizing: "border-box",
+                  fontSize: mediumScreen ? "12px" : "16px",
                   "&::placeholder": {
                     opacity: "1",
                   },
@@ -81,7 +93,12 @@ const ReasonForMatchModal: React.FC<ReasonForMatchModalProps> = ({
             />
           </Box>
           <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
-            <Typography sx={{ fontSize: "15px", color: "rgba(20, 48, 42, 1)" }}>
+            <Typography
+              sx={{
+                fontSize: mediumScreen ? "12px" : "15px",
+                color: "rgba(20, 48, 42, 1)",
+              }}
+            >
               Upload Proof of Payment:
             </Typography>
             <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -93,8 +110,8 @@ const ReasonForMatchModal: React.FC<ReasonForMatchModalProps> = ({
                 sx={{
                   textTransform: "uppercase",
                   backgroundColor: "rgba(140, 155, 145, 1)",
-                  width: "120px",
-                  fontSize: "12px",
+                  width: mediumScreen ? "110px" : "120px",
+                  fontSize: mediumScreen ? "10px" : "12px",
                   fontWeight: 700,
                   letterSpacing: "1.2px",
                   "&:hover": {
@@ -112,7 +129,7 @@ const ReasonForMatchModal: React.FC<ReasonForMatchModalProps> = ({
               <Typography
                 sx={{
                   color: "rgba(20, 48, 42, 1)",
-                  fontSize: "15px",
+                  fontSize: mediumScreen ? "12px" : "15px",
                   fontStyle: "italic",
                 }}
               >
@@ -120,16 +137,22 @@ const ReasonForMatchModal: React.FC<ReasonForMatchModalProps> = ({
               </Typography>
             </Box>
           </Box>
-          <Box sx={{ display: "flex", justifyContent: "center", mt: "50px" }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              mt: mediumScreen ? "40px" : "50px",
+            }}
+          >
             <CustomButtons
               customStyle={{
                 successBackgroundColor: "rgba(0, 206, 126, 1)",
                 successButtonHoverColor: "rgba(0, 176, 96, 1)",
                 declineBackgroundColor: "rgba(170, 50, 45, 1)",
                 declineButtonHoverColor: "rgba(140, 30, 25, 1)",
-                height: "40px",
-                width: "100px",
-                fontSize: "16px",
+                height: mediumScreen ? "35px" : "40px",
+                width: mediumScreen ? "90px" : "100px",
+                fontSize: mediumScreen ? "12px" : "16px",
               }}
               successButtonText="match"
               declineButtonText="cancel"
