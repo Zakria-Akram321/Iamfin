@@ -8,6 +8,7 @@ import {
   TableContainer,
   TableBody,
   Box,
+  useMediaQuery,
 } from "@mui/material";
 import CustomTextField from "../Banks/CustomTextField";
 import searchIcon from "../../Assets/Search.png";
@@ -23,6 +24,9 @@ const UnmatchedDepositTable: React.FC<UnmatchedDepositTableProps> = ({
   tableData,
 }) => {
   const [search, setSearch] = React.useState<string>("");
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1200px) and (max-width:1500px)"
+  );
   console.log(search);
   return (
     <TableContainer
@@ -46,7 +50,7 @@ const UnmatchedDepositTable: React.FC<UnmatchedDepositTableProps> = ({
                 sx={{
                   textTransform: "capitalize",
                   fontWeight: 700,
-                  fontSize: "20px",
+                  fontSize: mediumScreen ? "16px" : "20px",
                   color: "rgba(20, 48, 42, 1)",
                 }}
               >
@@ -66,8 +70,8 @@ const UnmatchedDepositTable: React.FC<UnmatchedDepositTableProps> = ({
                         onChange={(e: any) => setSearch(e.target.value)}
                         icon={searchIcon}
                         customStyles={{
-                          width: "190px",
-                          height: "30px",
+                          width: mediumScreen ? "150px" : "190px",
+                          height: mediumScreen ? "24px" : "30px",
                           iconHeight: "12px",
                           iconWidth: "12px",
                           padding: "0px 20px 0px 30px",
@@ -87,7 +91,10 @@ const UnmatchedDepositTable: React.FC<UnmatchedDepositTableProps> = ({
           {tableData?.map((row: any, index: number) => (
             <TableRow key={index} sx={{ height: "40px" }}>
               {Object.values(row).map((column: any, index: number) => (
-                <TableCell key={index} sx={{ fontSize: "15px" }}>
+                <TableCell
+                  key={index}
+                  sx={{ fontSize: mediumScreen ? "12px" : "15px" }}
+                >
                   {column}
                 </TableCell>
               ))}

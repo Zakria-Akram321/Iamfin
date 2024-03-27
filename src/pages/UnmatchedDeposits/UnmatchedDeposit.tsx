@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Layout from "../../components/Layout";
 import UiCard from "../../components/UiCard";
@@ -191,13 +191,18 @@ const rows = [
 ];
 
 export default function UnmatchedDeposit() {
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1200px) and (max-width:1500px)"
+  );
   return (
     <Layout>
-      <Box sx={{ maxWidth: "90%", margin: "0px auto" }}>
+      <Box
+        sx={{ maxWidth: "90%", m: mediumScreen ? "0 30px 0 auto" : "0 auto" }}
+      >
         <Typography
           variant="h1"
           sx={{
-            fontSize: "40px",
+            fontSize: mediumScreen ? "28px" : "40px",
             lineHeight: "48px",
             fontWeight: "700",
             color: "#005640",
@@ -207,7 +212,10 @@ export default function UnmatchedDeposit() {
         >
           Unmatched deposits
         </Typography>
-        <UiCard padding="30px 20px" maxHeight="65vh">
+        <UiCard
+          padding={mediumScreen ? "10px 10px" : "30px 20px"}
+          maxHeight="65vh"
+        >
           <UnmatchedDepositTable
             tableHeadings={tableHeading}
             tableData={rows}

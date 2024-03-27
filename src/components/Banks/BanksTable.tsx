@@ -59,15 +59,22 @@ const BanksTable: React.FC<BanksTableProps> = ({
           </TableHead>
           <TableBody>
             {banksData?.map((row: any, index: number) => (
-              <TableRow
-                key={index}
-                sx={{ height: "50px", cursor: "pointer" }}
-                onClick={hanldeBankRowClick}
-              >
+              <TableRow key={index} sx={{ height: "50px" }}>
                 <TableCell
-                  sx={{ fontSize: "20px", textTransform: "uppercase" }}
+                  sx={{
+                    fontSize: "20px",
+                    textTransform: "uppercase",
+                  }}
                 >
-                  {row.bank}
+                  <Box
+                    onClick={hanldeBankRowClick}
+                    sx={{
+                      cursor: "pointer",
+                      display: "inline-block",
+                    }}
+                  >
+                    {row.bank}
+                  </Box>
                 </TableCell>
                 <TableCell sx={{ textAlign: "center", fontSize: "20px" }}>
                   {row.active ? "Yes" : "No"}
