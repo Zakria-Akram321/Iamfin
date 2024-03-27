@@ -1,18 +1,26 @@
 import Layout from "../../Layout";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import MatchWithClientHeader from "./MatchWithClientHeader";
 import MatchWithClientSearchFields from "./MatchWithClientSearchFields";
 import UiCard from "../../UiCard";
 import MatchWithClientMainTable from "./MatchWithClientMainTable";
 
 const MatchwithClientMain = () => {
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
   return (
     <Layout>
-      <Box sx={{ maxWidth: "90%", m: "0px auto" }}>
+      <Box
+        sx={{
+          maxWidth: "90%",
+          m: mediumScreen ? "0px 20px 0px auto" : "0px auto",
+        }}
+      >
         <Typography
           variant="h1"
           sx={{
-            fontSize: "40px",
+            fontSize: mediumScreen ? "28px" : "40px",
             lineHeight: "48px",
             fontWeight: "700",
             color: "#005640",
@@ -27,14 +35,14 @@ const MatchwithClientMain = () => {
             <MatchWithClientHeader />
           </Box>
           <Box sx={{ p: "0px 30px 40px" }}>
-            <Box sx={{ m: "40px 0px" }}>
+            <Box sx={{ m: mediumScreen ? "30px 0px" : "40px 0px" }}>
               <MatchWithClientSearchFields />
             </Box>
             <Box>
               <Typography
                 variant="h1"
                 sx={{
-                  fontSize: "24px",
+                  fontSize: mediumScreen ? "18px" : "24px",
                   lineHeight: "28.8px",
                   fontWeight: "700",
                   color: "#005640",

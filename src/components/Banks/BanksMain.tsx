@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import BanksHeader from "./BanksHeader";
 import BanksTable from "./BanksTable";
 
@@ -39,6 +39,10 @@ const tableHeadings = [
 ];
 
 const BanksMain = () => {
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
+
   return (
     <Box
       sx={{
@@ -54,7 +58,7 @@ const BanksMain = () => {
         <Typography
           sx={{
             textTransform: "uppercase",
-            fontSize: "24px",
+            fontSize: mediumScreen ? "18px" : "24px",
             color: "#005640",
             fontWeight: 700,
           }}
@@ -67,7 +71,7 @@ const BanksMain = () => {
         <Typography
           sx={{
             textTransform: "uppercase",
-            fontSize: "24px",
+            fontSize: mediumScreen ? "18px" : "24px",
             color: "#005640",
             fontWeight: 700,
           }}

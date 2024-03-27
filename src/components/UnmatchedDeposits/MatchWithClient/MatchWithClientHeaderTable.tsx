@@ -8,6 +8,7 @@ import {
   TableContainer,
   TableBody,
   Box,
+  useMediaQuery,
 } from "@mui/material";
 import searchIcon from "../../../Assets/search.png";
 import CustomTextField from "../../Banks/CustomTextField";
@@ -25,6 +26,9 @@ const rows = [
 
 const MatchWithClientHeaderTable = () => {
   const [search, setSearch] = React.useState<string>("");
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
   console.log(search);
   return (
     <TableContainer
@@ -36,7 +40,7 @@ const MatchWithClientHeaderTable = () => {
         backgroundColor: "transparent",
         maxHeight: "65vh",
         overflowY: "auto",
-        maxWidth: "1100px",
+        maxWidth: mediumScreen ? "700px" : "1000px",
       }}
     >
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -48,7 +52,7 @@ const MatchWithClientHeaderTable = () => {
                 sx={{
                   textTransform: "capitalize",
                   fontWeight: 700,
-                  fontSize: "20px",
+                  fontSize: mediumScreen ? "15px" : "20px",
                   color: "white",
                   border: "none !important",
                   width: "20px",
@@ -71,7 +75,7 @@ const MatchWithClientHeaderTable = () => {
                         onChange={(e: any) => setSearch(e.target.value)}
                         icon={searchIcon}
                         customStyles={{
-                          width: "50px",
+                          width: mediumScreen ? "20px" : "50px",
                           height: "30px",
                           iconHeight: "12px",
                           iconWidth: "12px",
@@ -90,12 +94,15 @@ const MatchWithClientHeaderTable = () => {
         </TableHead>
         <TableBody>
           {rows?.map((row: any, index: number) => (
-            <TableRow key={index} sx={{ height: "50px" }}>
+            <TableRow
+              key={index}
+              sx={{ height: mediumScreen ? "30px" : "50px" }}
+            >
               {Object.values(row).map((column: any, index: number) => (
                 <TableCell
                   key={index}
                   sx={{
-                    fontSize: "16px",
+                    fontSize: mediumScreen ? "12px" : "16px",
                     border: "none",
                     color: "white",
                     p: "0",

@@ -1,4 +1,4 @@
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, TextField, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
 import CustomSmallModal from "../CustomSmallModal";
 import CustomButtons from "../CustomButtons";
@@ -15,6 +15,10 @@ const DeclineWithdrawalModal: React.FC<DeclineWithdrawalModalProps> = ({
   handleClose,
   setModalType,
 }) => {
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
+
   const declineClickHandler = () => {};
   const cancelClickHandler = () => {
     setModalType("");
@@ -30,7 +34,7 @@ const DeclineWithdrawalModal: React.FC<DeclineWithdrawalModalProps> = ({
       >
         <Box>
           <Box sx={{ textAlign: "center", mb: "30px" }}>
-            <Typography mb="15px" fontSize="18px">
+            <Typography mb="15px" fontSize={mediumScreen ? "15px" : "18px"}>
               Please provide a reason for the declined deposit:
             </Typography>
             <TextField
@@ -49,7 +53,7 @@ const DeclineWithdrawalModal: React.FC<DeclineWithdrawalModalProps> = ({
                 },
                 "& textarea": {
                   p: "0",
-                  width: "396px",
+                  width: mediumScreen ? "360px" : "396px",
                   color: "rgba(20, 48, 42, 1)",
                   padding: "10px 12px",
                   boxSizing: "border-box",
@@ -67,9 +71,9 @@ const DeclineWithdrawalModal: React.FC<DeclineWithdrawalModalProps> = ({
                 successButtonHoverColor: "rgba(0, 176, 96, 1)",
                 declineBackgroundColor: "rgba(170, 50, 45, 1)",
                 declineButtonHoverColor: "rgba(140, 30, 25, 1)",
-                height: "40px",
-                width: "100px",
-                fontSize: "16px",
+                height: mediumScreen ? "35px" : "40px",
+                width: mediumScreen ? "90px" : "100px",
+                fontSize: mediumScreen ? "12px" : "16px",
               }}
               successButtonText="decline"
               declineButtonText="cancel"

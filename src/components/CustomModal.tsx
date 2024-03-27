@@ -1,21 +1,5 @@
 import React, { ReactNode } from "react";
-import { Box, Modal } from "@mui/material";
-
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "59%",
-  transform: "translate(-50%, -50%)",
-  width: 860,
-  bgcolor: "rgba(255, 255, 255, 1)",
-  boxShadow: "4px 4px 10px 0px rgba(0, 0, 0, 0.1)",
-  pt: 7,
-  pr: 12,
-  pl: 11,
-  pb: 7,
-  boxSizing: "border-box",
-  borderRadius: "10px",
-};
+import { Box, Modal, useMediaQuery } from "@mui/material";
 
 interface CustomModalProps {
   children?: ReactNode;
@@ -28,6 +12,10 @@ const CustomModal: React.FC<CustomModalProps> = ({
   open,
   handleClose,
 }) => {
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
+
   return (
     <Box>
       <Modal
@@ -36,7 +24,25 @@ const CustomModal: React.FC<CustomModalProps> = ({
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
-        <Box sx={{ ...style }}>{children}</Box>
+        <Box
+          sx={{
+            position: "absolute" as "absolute",
+            top: "50%",
+            left: "59%",
+            transform: "translate(-50%, -50%)",
+            width: mediumScreen ? 650 : 860,
+            bgcolor: "rgba(255, 255, 255, 1)",
+            boxShadow: "4px 4px 10px 0px rgba(0, 0, 0, 0.1)",
+            pt: mediumScreen ? 6 : 7,
+            pr: mediumScreen ? 7 : 12,
+            pl: mediumScreen ? 7 : 11,
+            pb: mediumScreen ? 6 : 7,
+            boxSizing: "border-box",
+            borderRadius: "10px",
+          }}
+        >
+          {children}
+        </Box>
       </Modal>
     </Box>
   );
