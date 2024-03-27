@@ -1,7 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import MatchWithClientHeaderTable from "./MatchWithClientHeaderTable";
 
 const MatchWithClientHeader = () => {
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
   return (
     <Box>
       <Box
@@ -15,10 +18,10 @@ const MatchWithClientHeader = () => {
         <Typography
           sx={{
             color: "rgba(0, 206, 126, 1)",
-            fontSize: "24px",
+            fontSize: mediumScreen ? "18px" : "24px",
             fontWeight: 700,
             lineHeight: "28.8px",
-            maxWidth: "259px",
+            maxWidth: mediumScreen ? "190px" : "259px",
             textTransform: "uppercase",
           }}
         >

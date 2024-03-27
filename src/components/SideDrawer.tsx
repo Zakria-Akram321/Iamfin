@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import logo from "../Assets/Logo.png";
 import arrow from "../Assets/Expand_down_light.png";
 import * as React from "react";
@@ -26,6 +26,9 @@ export default function SideDrawer(props: Props) {
 
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -35,7 +38,7 @@ export default function SideDrawer(props: Props) {
     <div>
       <img
         src={logo}
-        width="191px"
+        width={mediumScreen ? "160px" : "191px"}
         style={{ marginTop: "27px", marginLeft: "0px" }}
       />
       <List sx={{ paddingX: "50px", marginTop: "35px" }}>
@@ -67,7 +70,6 @@ export default function SideDrawer(props: Props) {
                   transition: "background-color 0.3s ease",
                   textAlign: "right",
                   fontFamily: "Lato",
-                  fontSize: "26px",
                   fontWeight: 400,
                   textTransform: "capitalize",
                   backgroundColor: "transparent",
@@ -82,6 +84,11 @@ export default function SideDrawer(props: Props) {
                 }}
               >
                 <ListItemText
+                  sx={{
+                    "& span": {
+                      fontSize: mediumScreen ? "16px" : "20px",
+                    },
+                  }}
                   primary={
                     text.toLowerCase() === "userrights" ? "User Rights" : text
                   }
@@ -101,8 +108,10 @@ export default function SideDrawer(props: Props) {
       <AppBar
         position="fixed"
         sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
+          width: mediumScreen
+            ? `calc(100% - ${220}px)`
+            : `calc(100% - ${drawerWidth}px)`,
+          ml: mediumScreen ? `${220}px` : `${drawerWidth}px`,
           backgroundColor: "White",
           borderRadius: " 0px 0px 10px 0px",
           boxShadow: "5px 0px 10px 0px rgba(30, 30, 30, 0.25)",
@@ -170,7 +179,7 @@ export default function SideDrawer(props: Props) {
             display: { xs: "block", sm: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
-              width: drawerWidth,
+              width: mediumScreen ? "230px" : drawerWidth,
               borderRadius: "0px 10px 10px 0px",
               backgroundColor: "#FFF",
               boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.25)",
@@ -182,10 +191,14 @@ export default function SideDrawer(props: Props) {
         <Drawer
           variant="permanent"
           sx={{
-            display: { xs: "none", sm: "block", width: drawerWidth },
+            display: {
+              xs: "none",
+              sm: "block",
+              width: mediumScreen ? "230px" : drawerWidth,
+            },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
-              width: drawerWidth,
+              width: mediumScreen ? "230px" : drawerWidth,
               borderRadius: "0px 10px 10px 0px",
               backgroundColor: "#FFF",
               boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.25)",

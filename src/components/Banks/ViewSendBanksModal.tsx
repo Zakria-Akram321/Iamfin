@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, TextField } from "@mui/material";
+import { Box, Grid, Typography, TextField, useMediaQuery } from "@mui/material";
 import React from "react";
 import CustomButtons from "../CustomButtons";
 
@@ -14,6 +14,10 @@ const initialValues = {
 
 const ViewSendBanksModal = ({ setOpenModal }: any) => {
   const [formValues, setFormValues] = React.useState(initialValues);
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
+
   const handleChange = (e: any) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
     console.log(formValues);
@@ -30,11 +34,11 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
     <Box>
       <Typography
         sx={{
-          fontSize: "32px",
+          fontSize: mediumScreen ? "24px" : "32px",
           color: "rgba(0, 86, 64, 1)",
           fontWeight: 700,
           textTransform: "capitalize",
-          mb: "30px",
+          mb: mediumScreen ? "20px" : "30px",
         }}
       >
         View / Send Bank Account Details
@@ -46,7 +50,12 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
         mb="10px"
       >
         <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-          <Typography sx={{ color: "rgba(20, 48, 42, 1)", fontSize: "18px" }}>
+          <Typography
+            sx={{
+              color: "rgba(20, 48, 42, 1)",
+              fontSize: mediumScreen ? "15px" : "18px",
+            }}
+          >
             Account Name:
           </Typography>
         </Grid>
@@ -66,27 +75,12 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
         mb="10px"
       >
         <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-          <Typography sx={{ color: "rgba(20, 48, 42, 1)", fontSize: "18px" }}>
-            Swift/IBAN Number
-          </Typography>
-        </Grid>
-        <Grid item xs={5.9}>
-          <AddBanksTextField
-            name="swiftIban"
-            value={formValues.swiftIban}
-            onChange={handleChange}
-            placeholder="Sample Text"
-          />
-        </Grid>
-      </Grid>
-      <Grid
-        container
-        alignItems="center"
-        justifyContent="space-between"
-        mb="10px"
-      >
-        <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-          <Typography sx={{ color: "rgba(20, 48, 42, 1)", fontSize: "18px" }}>
+          <Typography
+            sx={{
+              color: "rgba(20, 48, 42, 1)",
+              fontSize: mediumScreen ? "15px" : "18px",
+            }}
+          >
             ACH and Wire Routing Number:
           </Typography>
         </Grid>
@@ -106,7 +100,38 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
         mb="10px"
       >
         <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-          <Typography sx={{ color: "rgba(20, 48, 42, 1)", fontSize: "18px" }}>
+          <Typography
+            sx={{
+              color: "rgba(20, 48, 42, 1)",
+              fontSize: mediumScreen ? "15px" : "18px",
+            }}
+          >
+            Swift/IBAN Number
+          </Typography>
+        </Grid>
+        <Grid item xs={5.9}>
+          <AddBanksTextField
+            name="swiftIban"
+            value={formValues.swiftIban}
+            onChange={handleChange}
+            placeholder="Sample Text"
+          />
+        </Grid>
+      </Grid>
+
+      <Grid
+        container
+        alignItems="center"
+        justifyContent="space-between"
+        mb="10px"
+      >
+        <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+          <Typography
+            sx={{
+              color: "rgba(20, 48, 42, 1)",
+              fontSize: mediumScreen ? "15px" : "18px",
+            }}
+          >
             Account Number:
           </Typography>
         </Grid>
@@ -126,7 +151,12 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
         mb="10px"
       >
         <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-          <Typography sx={{ color: "rgba(20, 48, 42, 1)", fontSize: "18px" }}>
+          <Typography
+            sx={{
+              color: "rgba(20, 48, 42, 1)",
+              fontSize: mediumScreen ? "15px" : "18px",
+            }}
+          >
             Routing Number:
           </Typography>
         </Grid>
@@ -141,7 +171,12 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
       </Grid>
       <Grid container justifyContent="space-between" mb="10px">
         <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-          <Typography sx={{ color: "rgba(20, 48, 42, 1)", fontSize: "18px" }}>
+          <Typography
+            sx={{
+              color: "rgba(20, 48, 42, 1)",
+              fontSize: mediumScreen ? "15px" : "18px",
+            }}
+          >
             Bank Address:
           </Typography>
         </Grid>
@@ -155,7 +190,7 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
           />
         </Grid>
       </Grid>
-      <Box sx={{ textAlign: "center", mt: "50px" }}>
+      <Box sx={{ textAlign: "center", mt: mediumScreen ? "40px" : "50px" }}>
         <TextField
           type="email"
           name="email"
@@ -188,9 +223,9 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
             successButtonHoverColor: "rgba(0, 176, 96, 1)",
             declineBackgroundColor: "rgba(170, 50, 45, 1)",
             declineButtonHoverColor: "rgba(140, 30, 25, 1)",
-            height: "40px",
-            width: "100px",
-            fontSize: "16px",
+            height: mediumScreen ? "35px" : "40px",
+            width: mediumScreen ? "90px" : "100px",
+            fontSize: mediumScreen ? "12px" : "16px",
           }}
           successButtonText="send"
           declineButtonText="close"
@@ -219,6 +254,10 @@ const AddBanksTextField: React.FC<AddBanksTextFieldProps> = ({
   placeholder,
   multiline,
 }) => {
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
+
   return (
     <TextField
       name={name}
@@ -226,7 +265,7 @@ const AddBanksTextField: React.FC<AddBanksTextFieldProps> = ({
       onChange={onChange}
       placeholder={placeholder}
       multiline={multiline ? true : false}
-      rows={multiline ? 4 : 1}
+      rows={multiline ? (mediumScreen ? 3 : 4) : 1}
       sx={{
         backgroundColor: "rgba(240, 243, 238, 1)",
         boxShadow: "4px 4px 4px 0px rgba(0, 0, 0, 0.02)",
@@ -234,7 +273,8 @@ const AddBanksTextField: React.FC<AddBanksTextFieldProps> = ({
         "& input": {
           p: "0",
           width: "258px",
-          height: "42.26px",
+          height: mediumScreen ? "32.26px" : "42.26px",
+          fontSize: mediumScreen ? "12px" : "16px",
           color: "rgba(0, 86, 64, 1)",
           padding: "0px 12px",
           boxSizing: "border-box",
@@ -252,6 +292,7 @@ const AddBanksTextField: React.FC<AddBanksTextFieldProps> = ({
           p: "0",
           width: "258px",
           color: "rgba(0, 86, 64, 1)",
+          fontSize: mediumScreen ? "12px" : "16px",
           padding: "10px 12px",
           boxSizing: "border-box",
           "&::placeholder": {

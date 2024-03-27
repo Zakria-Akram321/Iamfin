@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Box, Modal, Typography } from "@mui/material";
+import { Box, Modal, Typography, useMediaQuery } from "@mui/material";
 
 interface CustomSmallModalProps {
   children?: ReactNode;
@@ -20,6 +20,10 @@ const CustomSmallModal: React.FC<CustomSmallModalProps> = ({
   title,
   style,
 }) => {
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
+
   return (
     <Box>
       <Modal
@@ -34,13 +38,13 @@ const CustomSmallModal: React.FC<CustomSmallModalProps> = ({
             top: "50%",
             left: "57%",
             transform: "translate(-50%, -50%)",
-            width: 680,
+            width: mediumScreen ? 550 : 680,
             bgcolor: "rgba(255, 255, 255, 1)",
             boxShadow: "4px 4px 10px 0px rgba(0, 0, 0, 0.1)",
-            pt: style?.pt ? style.pt : 10,
-            pr: style?.pr ? style.pr : 11,
-            pl: style?.pl ? style.pl : 11,
-            pb: style?.pb ? style.pb : 10,
+            pt: style?.pt ? style.pt : mediumScreen ? 8 : 10,
+            pr: style?.pr ? style.pr : mediumScreen ? 6 : 11,
+            pl: style?.pl ? style.pl : mediumScreen ? 6 : 11,
+            pb: style?.pb ? style.pb : mediumScreen ? 8 : 10,
             boxSizing: "border-box",
             borderRadius: "10px",
           }}
@@ -64,16 +68,19 @@ const CustomSmallModal: React.FC<CustomSmallModalProps> = ({
               <Box
                 component="img"
                 src={iconImage}
-                sx={{ width: "125px", height: "125px" }}
+                sx={{
+                  width: mediumScreen ? "100px" : "125px",
+                  height: mediumScreen ? "100px" : "125px",
+                }}
               />
               <Typography
                 component="h1"
                 sx={{
                   ...customStyles,
-                  fontSize: "36px",
+                  fontSize: mediumScreen ? "26px" : "36px",
                   textAlign: "center",
                   fontWeight: 700,
-                  m: "30px 0px",
+                  m: mediumScreen ? "20px 0px" : "30px 0px",
                 }}
               >
                 {title}

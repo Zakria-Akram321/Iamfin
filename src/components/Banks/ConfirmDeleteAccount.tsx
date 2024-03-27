@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
 import CustomSmallModal from "../CustomSmallModal";
 import CustomButtons from "../CustomButtons";
@@ -15,6 +15,10 @@ const ConfirmDeleteAccount: React.FC<ConfirmDeleteAccountProps> = ({
   handleClose,
   setShowModal,
 }) => {
+  const mediumScreen = useMediaQuery(
+    "(min-width: 1100px) and (max-width:1500px)"
+  );
+
   const deleteClickHandler = () => {
     // setShowModal(false)
   };
@@ -32,23 +36,29 @@ const ConfirmDeleteAccount: React.FC<ConfirmDeleteAccountProps> = ({
       >
         <Box>
           <Box sx={{ textAlign: "center", mb: "30px" }}>
-            <Typography mb="15px" fontSize="18px">
+            <Typography mb="15px" fontSize={mediumScreen ? "14px" : "18px"}>
               This action cannot be undone.
             </Typography>
-            <Typography mb="15px" fontSize="18px">
+            <Typography mb="15px" fontSize={mediumScreen ? "14px" : "18px"}>
               Are you sure you want to delete this bank account?
             </Typography>
           </Box>
-          <Box sx={{ display: "flex", justifyContent: "center", mt: "60px" }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              mt: mediumScreen ? "40px" : "60px",
+            }}
+          >
             <CustomButtons
               customStyle={{
                 successBackgroundColor: "rgba(0, 206, 126, 1)",
                 successButtonHoverColor: "rgba(0, 176, 96, 1)",
                 declineBackgroundColor: "rgba(170, 50, 45, 1)",
                 declineButtonHoverColor: "rgba(140, 30, 25, 1)",
-                height: "40px",
-                width: "100px",
-                fontSize: "16px",
+                height: mediumScreen ? "35px" : "40px",
+                width: mediumScreen ? "90px" : "100px",
+                fontSize: mediumScreen ? "12px" : "16px",
               }}
               successButtonText="delete"
               declineButtonText="cancel"
