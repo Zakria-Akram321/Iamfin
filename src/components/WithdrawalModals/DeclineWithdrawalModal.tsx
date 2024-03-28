@@ -28,7 +28,10 @@ const DeclineWithdrawalModal: React.FC<DeclineWithdrawalModalProps> = ({
       <CustomSmallModal
         open={open}
         handleClose={handleClose}
-        customStyles={{ color: "rgba(170, 50, 45, 1)" }}
+        customStyles={{
+          color: "rgba(170, 50, 45, 1)",
+          border: "3px solid rgba(170, 50, 45, 1)",
+        }}
         iconImage={iconImage}
         title="Decline Withdrawal?"
       >

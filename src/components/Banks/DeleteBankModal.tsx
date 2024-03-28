@@ -1,6 +1,7 @@
 import { Box, Grid, Typography, TextField, useMediaQuery } from "@mui/material";
 import React from "react";
 import CustomButtons from "../CustomButtons";
+import LiveSearch from "./LiveSearch";
 
 const initialValues = {
   accountName: "",
@@ -10,6 +11,31 @@ const initialValues = {
   bankAddress: "",
   reference: "",
 };
+
+const accountNames = [
+  { id: "1", name: "FNB" },
+  { id: "2", name: "Standard Bank" },
+  { id: "3", name: "ABC Bank" },
+  { id: "4", name: "ABSA" },
+  { id: "5", name: "ABC Bank" },
+  { id: "6", name: "ABSA" },
+  { id: "7", name: "ABC Bank" },
+  { id: "8", name: "ABSA" },
+  { id: "9", name: "ABC Bank" },
+  { id: "10", name: "ABSA" },
+];
+const accountNumbers = [
+  { id: "1", name: "1234543" },
+  { id: "2", name: "6767671" },
+  { id: "3", name: "2778652" },
+  { id: "4", name: "11234543" },
+  { id: "5", name: "8998999" },
+  { id: "6", name: "11117787" },
+  { id: "7", name: "189876771" },
+  { id: "8", name: "166799977" },
+  { id: "9", name: "11676769" },
+  { id: "10", name: "17878666" },
+];
 
 const DeleteBanksModal = ({ setShowModal, setConfirmDeleteModal }: any) => {
   const [formValues, setFormValues] = React.useState(initialValues);
@@ -31,6 +57,35 @@ const DeleteBanksModal = ({ setShowModal, setConfirmDeleteModal }: any) => {
     e.preventDefault();
   };
 
+  const [results, setResults] = React.useState<any[]>();
+  const [accountNumberResults, setaccountNumberResults] =
+    React.useState<any[]>();
+  const [selectedbank, setSelectedbank] = React.useState<any>();
+  const [selectedAccountNumber, setSelectedaccountNumber] =
+    React.useState<any>();
+
+  const handleAccountNameSearchChange = (e: any) => {
+    const { target } = e;
+    if (!target.value.trim()) return setResults([]);
+
+    const filteredValue = accountNames.filter((accountName) =>
+      accountName.name.toLowerCase().startsWith(target.value.toLowerCase())
+    );
+
+    setResults(filteredValue);
+  };
+
+  const handleAccountNumberSearchChange = (e: any) => {
+    const { target } = e;
+    if (!target.value.trim()) return setResults([]);
+
+    const filteredValue = accountNumbers.filter((accountName) =>
+      accountName.name.toLowerCase().startsWith(target.value.toLowerCase())
+    );
+
+    setaccountNumberResults(filteredValue);
+  };
+
   return (
     <>
       <Box>
@@ -43,7 +98,7 @@ const DeleteBanksModal = ({ setShowModal, setConfirmDeleteModal }: any) => {
             mb: mediumScreen ? "20px" : "30px",
           }}
         >
-          Delete Bank Account
+          Delete accountName Account
         </Typography>
         <Grid
           container
@@ -62,10 +117,19 @@ const DeleteBanksModal = ({ setShowModal, setConfirmDeleteModal }: any) => {
             </Typography>
           </Grid>
           <Grid item xs={5.9}>
-            <AddBanksTextField
+            {/* <AddBanksTextField
               name="accountName"
               value={formValues.accountName}
               onChange={handleChange}
+              placeholder="Sample Text"
+            /> */}
+            <LiveSearch
+              results={results}
+              value={selectedbank?.name}
+              renderItem={(item) => <p>{item.name}</p>}
+              onChange={handleAccountNameSearchChange}
+              onSelect={(item) => setSelectedbank(item)}
+              name="accountName"
               placeholder="Sample Text"
             />
           </Grid>
@@ -112,10 +176,19 @@ const DeleteBanksModal = ({ setShowModal, setConfirmDeleteModal }: any) => {
             </Typography>
           </Grid>
           <Grid item xs={5.9}>
-            <AddBanksTextField
+            {/* <AddBanksTextField
               name="accountNumber"
               value={formValues.accountNumber}
               onChange={handleChange}
+              placeholder="Sample Text"
+            /> */}
+            <LiveSearch
+              results={accountNumberResults}
+              value={selectedAccountNumber?.name}
+              renderItem={(item) => <p>{item.name}</p>}
+              onChange={handleAccountNumberSearchChange}
+              onSelect={(item) => setSelectedaccountNumber(item)}
+              name="accountNumber"
               placeholder="Sample Text"
             />
           </Grid>
@@ -153,7 +226,7 @@ const DeleteBanksModal = ({ setShowModal, setConfirmDeleteModal }: any) => {
                 fontSize: mediumScreen ? "15px" : "18px",
               }}
             >
-              Bank Address:
+              accountName Address:
             </Typography>
           </Grid>
           <Grid item xs={5.9}>

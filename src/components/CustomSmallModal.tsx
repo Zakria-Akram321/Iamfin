@@ -47,6 +47,7 @@ const CustomSmallModal: React.FC<CustomSmallModalProps> = ({
             pb: style?.pb ? style.pb : mediumScreen ? 8 : 10,
             boxSizing: "border-box",
             borderRadius: "10px",
+            border: customStyles.border ? customStyles.border : "none",
           }}
         >
           <Box
@@ -77,6 +78,7 @@ const CustomSmallModal: React.FC<CustomSmallModalProps> = ({
                 component="h1"
                 sx={{
                   ...customStyles,
+                  border: "none",
                   fontSize: mediumScreen ? "26px" : "36px",
                   textAlign: "center",
                   fontWeight: 700,

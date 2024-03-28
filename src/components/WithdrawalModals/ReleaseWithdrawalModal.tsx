@@ -28,7 +28,10 @@ const ReleaseWithdrawalModal: React.FC<ReleaseWithdrawalModalProps> = ({
       <CustomSmallModal
         open={open}
         handleClose={handleClose}
-        customStyles={{ color: "rgba(0, 86, 64, 1)" }}
+        customStyles={{
+          color: "rgba(0, 86, 64, 1)",
+          border: "3px solid rgba(0, 206, 126, 1)",
+        }}
         iconImage={iconImage}
         title={
           <Box sx={{ fontFamily: "Aleo !important" }}>
