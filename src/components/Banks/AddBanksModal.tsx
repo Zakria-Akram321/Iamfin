@@ -94,7 +94,7 @@ const AddBanksModal = ({ setShowModal }: any) => {
             }}
           >
             <MenuItem value="">
-              <em>DropDown</em>
+              <em>None</em>
             </MenuItem>
             <MenuItem value="usa">USA</MenuItem>
             <MenuItem value="uk">UK</MenuItem>

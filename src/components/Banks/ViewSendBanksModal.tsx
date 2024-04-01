@@ -1,8 +1,17 @@
-import { Box, Grid, Typography, TextField, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Typography,
+  TextField,
+  useMediaQuery,
+  styled,
+  Button,
+} from "@mui/material";
 import React from "react";
 import CustomButtons from "../CustomButtons";
 
 const initialValues = {
+  bankName: "",
   accountName: "",
   wireRoutingNumber: "",
   accountNumber: "",
@@ -10,7 +19,21 @@ const initialValues = {
   bankAddress: "",
   email: "",
   swiftIban: "",
+  reference: "",
+  bankFile: null,
 };
+
+const VisuallyHiddenInput = styled("input")({
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
+  height: 1,
+  overflow: "hidden",
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  whiteSpace: "nowrap",
+  width: 1,
+});
 
 const ViewSendBanksModal = ({ setOpenModal }: any) => {
   const [formValues, setFormValues] = React.useState(initialValues);
@@ -19,6 +42,7 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
   );
 
   const handleChange = (e: any) => {
+    console.log(e.target.type);
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
     console.log(formValues);
   };
@@ -43,6 +67,31 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
       >
         View / Send Bank Account Details
       </Typography>
+      <Grid
+        container
+        alignItems="center"
+        justifyContent="space-between"
+        mb="10px"
+      >
+        <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+          <Typography
+            sx={{
+              color: "rgba(20, 48, 42, 1)",
+              fontSize: mediumScreen ? "15px" : "18px",
+            }}
+          >
+            Bank Name:
+          </Typography>
+        </Grid>
+        <Grid item xs={5.9}>
+          <AddBanksTextField
+            name="bankName"
+            value={formValues.bankName}
+            onChange={handleChange}
+            placeholder="Sample Text"
+          />
+        </Grid>
+      </Grid>
       <Grid
         container
         alignItems="center"
@@ -190,7 +239,92 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
           />
         </Grid>
       </Grid>
-      <Box sx={{ textAlign: "center", mt: mediumScreen ? "40px" : "50px" }}>
+      <Grid container justifyContent="space-between" mb="10px">
+        <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+          <Typography
+            sx={{
+              color: "rgba(20, 48, 42, 1)",
+              fontSize: mediumScreen ? "15px" : "18px",
+            }}
+          >
+            Reference:
+          </Typography>
+        </Grid>
+        <Grid item xs={5.9}>
+          <AddBanksTextField
+            name="reference"
+            value={formValues.reference}
+            onChange={handleChange}
+            placeholder="Sample Text"
+          />
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        justifyContent="space-between"
+        mb="10px"
+        alignItems="center"
+        mt={mediumScreen ? "20px" : "30px"}
+      >
+        <Grid item xs={3.9} sx={{ textAlign: "right" }}>
+          <Typography
+            sx={{
+              color: "rgba(20, 48, 42, 1)",
+              fontSize: mediumScreen ? "15px" : "18px",
+            }}
+          >
+            Upload Bank File:
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          xs={3.9}
+          sx={{
+            backgroundColor: "rgba(240, 243, 238, 1)",
+            boxShadow: "4px 4px 4px 0px rgba(0, 0, 0, 0.02)",
+            borderRadius: "5px",
+            width: "258px",
+            height: mediumScreen ? "32.26px" : "42.26px",
+            fontSize: mediumScreen ? "12px" : "16px",
+            color: "rgba(0, 86, 64, 1)",
+            padding: "0px 12px",
+            boxSizing: "border-box",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          {formValues.bankFile ? formValues.bankFile : "Select File"}
+        </Grid>
+        <Grid item xs={3.9} sx={{ display: "flex", justifyContent: "center" }}>
+          <Button
+            component="label"
+            role={undefined}
+            variant="contained"
+            tabIndex={-1}
+            sx={{
+              textTransform: "capitalize",
+              backgroundColor: "rgba(0, 206, 126, 1)",
+              width: mediumScreen ? "110px" : "120px",
+              height: mediumScreen ? "29.26px" : "39.26px",
+              p: "0",
+              fontSize: mediumScreen ? "12px" : "16px",
+              fontWeight: 700,
+              letterSpacing: "1.2px",
+              "&:hover": {
+                backgroundColor: "rgba(0, 176, 96, 1)",
+              },
+            }}
+          >
+            Upload
+            <VisuallyHiddenInput
+              type="file"
+              name="bankFile"
+              onChange={handleChange}
+            />
+          </Button>
+        </Grid>
+      </Grid>
+      <Box sx={{ textAlign: "center", mt: mediumScreen ? "30px" : "50px" }}>
         <TextField
           type="email"
           name="email"
@@ -245,6 +379,7 @@ interface AddBanksTextFieldProps {
   onChange: (e: any) => void;
   placeholder: string;
   multiline?: boolean;
+  type?: string;
 }
 
 const AddBanksTextField: React.FC<AddBanksTextFieldProps> = ({
@@ -253,6 +388,7 @@ const AddBanksTextField: React.FC<AddBanksTextFieldProps> = ({
   onChange,
   placeholder,
   multiline,
+  type,
 }) => {
   const mediumScreen = useMediaQuery(
     "(min-width: 1100px) and (max-width:1500px)"
@@ -260,6 +396,7 @@ const AddBanksTextField: React.FC<AddBanksTextFieldProps> = ({
 
   return (
     <TextField
+      type={type}
       name={name}
       value={value}
       onChange={onChange}
