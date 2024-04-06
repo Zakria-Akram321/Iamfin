@@ -76,6 +76,9 @@ const BanksTable: React.FC<BanksTableProps> = ({
                     sx={{
                       cursor: "pointer",
                       display: "inline-block",
+                      "&:hover":{
+                        color:"blue"
+                      }
                     }}
                   >
                     {row.bank}
