@@ -12,10 +12,25 @@ import {
 } from "@mui/material";
 import ViewSendBanksModal from "./ViewSendBanksModal";
 import CustomModal from "../CustomModal";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ExpandIcon from "../../Assets/expand-icon.png";
+import DeleteBanksModal from "./DeleteBankModal";
+import ConfirmDeleteAccount from "./ConfirmDeleteAccount";
+
+const expandBankData = {
+  bankName: "FNB",
+  accountName: "ABC",
+  wireRoutingNumber: "1234567",
+  accountNumber: "AF565744477",
+  swiftIban: "56565777",
+  routingNumber: "6676676",
+  bankAddress: "New York,  USA",
+  reference: "XYZ",
+};
 
 interface BanksTableProps {
   banksData?: any;
-  tableHeadings?: string[];
+  tableHeadings?: any;
 }
 
 const BanksTable: React.FC<BanksTableProps> = ({
@@ -23,6 +38,10 @@ const BanksTable: React.FC<BanksTableProps> = ({
   tableHeadings,
 }) => {
   const [openModal, setOpenModal] = React.useState(false);
+  const [expandModal, setExpandModal] = React.useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
+  const [confirmDeleteModalByIcon, setConfirmDeleteModalByIcon] =
+    React.useState(false);
   const mediumScreen = useMediaQuery(
     "(min-width: 1100px) and (max-width:1500px)"
   );
@@ -32,6 +51,23 @@ const BanksTable: React.FC<BanksTableProps> = ({
   };
   const handleModalClose = () => {
     setOpenModal(false);
+    setExpandModal(false);
+    setOpenDeleteModal(false);
+    setConfirmDeleteModalByIcon(false);
+  };
+
+  const expandClickHandler: any = (bankId: any) => {
+    // Send a request based on Id bank Id to get the relevant data for the expand pop-up/modal
+    //Here I am using a dummy data defined at the start of this component
+    console.log(bankId);
+    setExpandModal(true);
+  };
+
+  const deleteClickHandler: any = (bankId: any) => {
+    //We can pass the same dummy data that we have fetched for the expand pop-up/modal
+    //As we need same information for expand and delete pop-ups/modals
+    console.log(bankId);
+    setOpenDeleteModal(true);
   };
   return (
     <>
@@ -76,9 +112,9 @@ const BanksTable: React.FC<BanksTableProps> = ({
                     sx={{
                       cursor: "pointer",
                       display: "inline-block",
-                      "&:hover":{
-                        color:"blue"
-                      }
+                      "&:hover": {
+                        color: "blue",
+                      },
                     }}
                   >
                     {row.bank}
@@ -173,8 +209,41 @@ const BanksTable: React.FC<BanksTableProps> = ({
                     </Box>
                   </Box>
                 </TableCell>
-                <TableCell sx={{ fontSize: mediumScreen ? "16px" : "20px" }}>
-                  {row.details}
+                <TableCell
+                  sx={{
+                    fontSize: mediumScreen ? "16px" : "20px",
+                    // display: "flex",
+                    // justifyContent: "space-between",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Box>{row.details}</Box>
+                    <Box sx={{ display: "flex", gap: "10px" }}>
+                      <Box>
+                        <Box
+                          component="img"
+                          src={ExpandIcon}
+                          sx={{ cursor: "pointer" }}
+                          onClick={() => expandClickHandler(row.id)}
+                        />
+                      </Box>
+                      <Box>
+                        <DeleteIcon
+                          sx={{
+                            color: "rgba(170, 50, 45, 1)",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => deleteClickHandler(row.id)}
+                        />
+                      </Box>
+                    </Box>
+                  </Box>
                 </TableCell>
               </TableRow>
             ))}
@@ -185,6 +254,33 @@ const BanksTable: React.FC<BanksTableProps> = ({
         <CustomModal open={openModal} handleClose={handleModalClose}>
           <ViewSendBanksModal setOpenModal={setOpenModal} />
         </CustomModal>
+      )}
+      {expandModal && (
+        <CustomModal open={expandModal} handleClose={handleModalClose}>
+          <ViewSendBanksModal
+            setExpandModal={setExpandModal}
+            modalData={expandBankData}
+          />
+        </CustomModal>
+      )}
+      {openDeleteModal && (
+        <CustomModal open={openDeleteModal} handleClose={handleModalClose}>
+          <DeleteBanksModal
+            setShowModal={setOpenDeleteModal}
+            setConfirmDeleteModal={setConfirmDeleteModalByIcon}
+            modalData={expandBankData}
+          />
+        </CustomModal>
+      )}
+      {confirmDeleteModalByIcon && (
+        <>
+          <ConfirmDeleteAccount
+            open={confirmDeleteModalByIcon}
+            handleClose={handleModalClose}
+            setShowModal={setConfirmDeleteModalByIcon}
+            setDeleteModal={setOpenDeleteModal}
+          />
+        </>
       )}
     </>
   );

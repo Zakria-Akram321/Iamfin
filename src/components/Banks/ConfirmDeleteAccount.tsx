@@ -7,17 +7,21 @@ import iconImage from "../../Assets/exclamation-red.png";
 interface ConfirmDeleteAccountProps {
   open: boolean;
   handleClose: () => void;
-  setShowModal: any;
+  setShowModal?: any;
+  setDeleteModal?: any;
 }
 
 const ConfirmDeleteAccount: React.FC<ConfirmDeleteAccountProps> = ({
   open,
   handleClose,
   setShowModal,
+  setDeleteModal,
 }) => {
   const mediumScreen = useMediaQuery(
     "(min-width: 1100px) and (max-width:1500px)"
   );
+
+  setDeleteModal && setDeleteModal(false);
 
   const deleteClickHandler = () => {
     // setShowModal(false)

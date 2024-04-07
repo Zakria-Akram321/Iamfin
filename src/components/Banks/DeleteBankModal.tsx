@@ -37,7 +37,11 @@ const accountNumbers = [
   { id: "10", name: "17878666" },
 ];
 
-const DeleteBanksModal = ({ setShowModal, setConfirmDeleteModal }: any) => {
+const DeleteBanksModal = ({
+  setShowModal,
+  setConfirmDeleteModal,
+  modalData,
+}: any) => {
   const [formValues, setFormValues] = React.useState(initialValues);
   const mediumScreen = useMediaQuery(
     "(min-width: 1100px) and (max-width:1500px)"
@@ -60,9 +64,6 @@ const DeleteBanksModal = ({ setShowModal, setConfirmDeleteModal }: any) => {
   const [results, setResults] = React.useState<any[]>();
   const [accountNumberResults, setaccountNumberResults] =
     React.useState<any[]>();
-  const [selectedbank, setSelectedbank] = React.useState<any>();
-  const [selectedAccountNumber, setSelectedaccountNumber] =
-    React.useState<any>();
 
   const handleAccountNameSearchChange = (e: any) => {
     const { target } = e;
@@ -117,21 +118,26 @@ const DeleteBanksModal = ({ setShowModal, setConfirmDeleteModal }: any) => {
             </Typography>
           </Grid>
           <Grid item xs={5.9}>
-            {/* <AddBanksTextField
-              name="accountName"
-              value={formValues.accountName}
-              onChange={handleChange}
-              placeholder="Sample Text"
-            /> */}
-            <LiveSearch
-              results={results}
-              value={selectedbank?.name}
-              renderItem={(item) => <p>{item.name}</p>}
-              onChange={handleAccountNameSearchChange}
-              onSelect={(item) => setSelectedbank(item)}
-              name="accountName"
-              placeholder="Sample Text"
-            />
+            {modalData ? (
+              <AddBanksTextField
+                name="accountName"
+                value={modalData?.accountName ? modalData.accountName : ""}
+                onChange={handleChange}
+                placeholder="Sample Text"
+              />
+            ) : (
+              <LiveSearch
+                results={results}
+                value={formValues.accountName}
+                renderItem={(item) => <p>{item.name}</p>}
+                onChange={handleAccountNameSearchChange}
+                onSelect={(item) =>
+                  setFormValues({ ...formValues, accountName: item.name })
+                }
+                name="accountName"
+                placeholder="Sample Text"
+              />
+            )}
           </Grid>
         </Grid>
         <Grid
@@ -153,7 +159,11 @@ const DeleteBanksModal = ({ setShowModal, setConfirmDeleteModal }: any) => {
           <Grid item xs={5.9}>
             <AddBanksTextField
               name="wireRoutingNumber"
-              value={formValues.wireRoutingNumber}
+              value={
+                modalData?.wireRoutingNumber
+                  ? modalData.wireRoutingNumber
+                  : formValues.wireRoutingNumber
+              }
               onChange={handleChange}
               placeholder="Sample Text"
             />
@@ -176,21 +186,30 @@ const DeleteBanksModal = ({ setShowModal, setConfirmDeleteModal }: any) => {
             </Typography>
           </Grid>
           <Grid item xs={5.9}>
-            {/* <AddBanksTextField
-              name="accountNumber"
-              value={formValues.accountNumber}
-              onChange={handleChange}
-              placeholder="Sample Text"
-            /> */}
-            <LiveSearch
-              results={accountNumberResults}
-              value={selectedAccountNumber?.name}
-              renderItem={(item) => <p>{item.name}</p>}
-              onChange={handleAccountNumberSearchChange}
-              onSelect={(item) => setSelectedaccountNumber(item)}
-              name="accountNumber"
-              placeholder="Sample Text"
-            />
+            {modalData ? (
+              <AddBanksTextField
+                name="accountNumber"
+                value={
+                  modalData?.accountNumber
+                    ? modalData.accountNumber
+                    : formValues.accountNumber
+                }
+                onChange={handleChange}
+                placeholder="Sample Text"
+              />
+            ) : (
+              <LiveSearch
+                results={accountNumberResults}
+                value={formValues.accountNumber}
+                renderItem={(item) => <p>{item.name}</p>}
+                onChange={handleAccountNumberSearchChange}
+                onSelect={(item) =>
+                  setFormValues({ ...formValues, accountNumber: item.name })
+                }
+                name="accountNumber"
+                placeholder="Sample Text"
+              />
+            )}
           </Grid>
         </Grid>
         <Grid
@@ -212,7 +231,11 @@ const DeleteBanksModal = ({ setShowModal, setConfirmDeleteModal }: any) => {
           <Grid item xs={5.9}>
             <AddBanksTextField
               name="routingNumber"
-              value={formValues.routingNumber}
+              value={
+                modalData?.routingNumber
+                  ? modalData.routingNumber
+                  : formValues.routingNumber
+              }
               onChange={handleChange}
               placeholder="Sample Text"
             />
@@ -226,13 +249,17 @@ const DeleteBanksModal = ({ setShowModal, setConfirmDeleteModal }: any) => {
                 fontSize: mediumScreen ? "15px" : "18px",
               }}
             >
-              accountName Address:
+              Bank Address:
             </Typography>
           </Grid>
           <Grid item xs={5.9}>
             <AddBanksTextField
               name="bankAddress"
-              value={formValues.bankAddress}
+              value={
+                modalData?.bankAddress
+                  ? modalData.bankAddress
+                  : formValues.bankAddress
+              }
               onChange={handleChange}
               placeholder="Sample Text"
               multiline
@@ -258,7 +285,11 @@ const DeleteBanksModal = ({ setShowModal, setConfirmDeleteModal }: any) => {
           <Grid item xs={5.9}>
             <AddBanksTextField
               name="reference"
-              value={formValues.reference}
+              value={
+                modalData?.reference
+                  ? modalData.reference
+                  : formValues.reference
+              }
               onChange={handleChange}
               placeholder="Sample Text"
             />

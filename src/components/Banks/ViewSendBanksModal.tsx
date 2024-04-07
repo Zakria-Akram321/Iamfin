@@ -35,22 +35,25 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-const ViewSendBanksModal = ({ setOpenModal }: any) => {
+const ViewSendBanksModal = ({
+  setOpenModal,
+  setExpandModal,
+  modalData,
+}: any) => {
   const [formValues, setFormValues] = React.useState(initialValues);
   const mediumScreen = useMediaQuery(
     "(min-width: 1100px) and (max-width:1500px)"
   );
 
   const handleChange = (e: any) => {
-    console.log(e.target.type);
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
-    console.log(formValues);
   };
   const sendClickHandler = (e: any) => {
     e.preventDefault();
   };
   const closeClickHandler = (e: any) => {
-    setOpenModal(false);
+    setOpenModal && setOpenModal(false);
+    setExpandModal && setExpandModal(false);
     e.preventDefault();
   };
 
@@ -86,7 +89,9 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
         <Grid item xs={5.9}>
           <AddBanksTextField
             name="bankName"
-            value={formValues.bankName}
+            value={
+              modalData?.bankName ? modalData?.bankName : formValues.bankName
+            }
             onChange={handleChange}
             placeholder="Sample Text"
           />
@@ -111,7 +116,11 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
         <Grid item xs={5.9}>
           <AddBanksTextField
             name="accountName"
-            value={formValues.accountName}
+            value={
+              modalData?.accountName
+                ? modalData?.accountName
+                : formValues.accountName
+            }
             onChange={handleChange}
             placeholder="Sample Text"
           />
@@ -136,7 +145,11 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
         <Grid item xs={5.9}>
           <AddBanksTextField
             name="wireRoutingNumber"
-            value={formValues.wireRoutingNumber}
+            value={
+              modalData?.wireRoutingNumber
+                ? modalData?.wireRoutingNumber
+                : formValues.wireRoutingNumber
+            }
             onChange={handleChange}
             placeholder="Sample Text"
           />
@@ -161,7 +174,9 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
         <Grid item xs={5.9}>
           <AddBanksTextField
             name="swiftIban"
-            value={formValues.swiftIban}
+            value={
+              modalData?.swiftIban ? modalData?.swiftIban : formValues.swiftIban
+            }
             onChange={handleChange}
             placeholder="Sample Text"
           />
@@ -187,7 +202,11 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
         <Grid item xs={5.9}>
           <AddBanksTextField
             name="accountNumber"
-            value={formValues.accountNumber}
+            value={
+              modalData?.accountNumber
+                ? modalData?.accountNumber
+                : formValues.accountNumber
+            }
             onChange={handleChange}
             placeholder="Sample Text"
           />
@@ -212,7 +231,11 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
         <Grid item xs={5.9}>
           <AddBanksTextField
             name="routingNumber"
-            value={formValues.routingNumber}
+            value={
+              modalData?.routingNumber
+                ? modalData?.routingNumber
+                : formValues.routingNumber
+            }
             onChange={handleChange}
             placeholder="Sample Text"
           />
@@ -232,7 +255,11 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
         <Grid item xs={5.9}>
           <AddBanksTextField
             name="bankAddress"
-            value={formValues.bankAddress}
+            value={
+              modalData?.bankAddress
+                ? modalData?.bankAddress
+                : formValues.bankAddress
+            }
             onChange={handleChange}
             placeholder="Sample Text"
             multiline
@@ -253,7 +280,9 @@ const ViewSendBanksModal = ({ setOpenModal }: any) => {
         <Grid item xs={5.9}>
           <AddBanksTextField
             name="reference"
-            value={formValues.reference}
+            value={
+              modalData?.reference ? modalData?.reference : formValues.reference
+            }
             onChange={handleChange}
             placeholder="Sample Text"
           />

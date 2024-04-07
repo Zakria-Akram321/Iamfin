@@ -37,6 +37,7 @@ const CustomButtons: React.FC<CustomButtons> = ({
           height: `${customStyle.height}`,
           width: `${customStyle.width}`,
           fontSize: `${customStyle.fontSize}`,
+          boxShadow: "4px 4px 4px 0px rgba(0, 0, 0, 0.1)",
           "&:hover": {
             backgroundColor: `${customStyle.successButtonHoverColor}`,
           },
@@ -55,6 +56,7 @@ const CustomButtons: React.FC<CustomButtons> = ({
           height: `${customStyle.height}`,
           width: `${customStyle.width}`,
           fontSize: `${customStyle.fontSize}`,
+          boxShadow: "4px 4px 4px 0px rgba(0, 0, 0, 0.1)",
           "&:hover": {
             backgroundColor: `${customStyle.declineButtonHoverColor}`,
           },

@@ -1,4 +1,4 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { Box, Button, useMediaQuery } from "@mui/material";
 import CustomButtons from "../CustomButtons";
 import React from "react";
 import FilterIcon from "../../Assets/filter_big.png";
@@ -7,6 +7,7 @@ import CustomModal from "../CustomModal";
 import AddBanksModal from "./AddBanksModal";
 import DeleteBanksModal from "./DeleteBankModal";
 import ConfirmDeleteAccount from "./ConfirmDeleteAccount";
+import AddNewCountryModal from "./AddNewCountryModal";
 
 const BanksHeader = () => {
   const [filterByCountry, setFilterByCountry] = React.useState<string>("");
@@ -14,13 +15,12 @@ const BanksHeader = () => {
   const [showModal, setShowModal] = React.useState<string>("");
   const [addOpen, setAddOpen] = React.useState<boolean>(false);
   const [deleteOpen, setDeleteOpen] = React.useState<boolean>(false);
+  const [newCountryOpen, setNewCountryOpen] = React.useState<boolean>(false);
   const [openConfirmDeleteModal, setOpenConfirmDeleteModal] =
     React.useState(false);
   const mediumScreen = useMediaQuery(
     "(min-width: 1100px) and (max-width:1500px)"
   );
-
-  console.log(showModal);
 
   const handleConfirmDeleteModalClose = () => {
     setOpenConfirmDeleteModal(false);
@@ -33,10 +33,15 @@ const BanksHeader = () => {
     setShowModal("delete");
     setDeleteOpen(true);
   };
+  const addNewCountryClickHandler = () => {
+    setShowModal("add-new-country");
+    setNewCountryOpen(true);
+  };
 
   const handleModalClose = () => {
     setAddOpen(false);
     setDeleteOpen(false);
+    setNewCountryOpen(false);
   };
 
   console.log("filterByBank", filterByBank);
@@ -86,21 +91,47 @@ const BanksHeader = () => {
             />
           </Box>
         </Box>
-        <CustomButtons
-          customStyle={{
-            successBackgroundColor: "rgba(0, 206, 126, 1)",
-            successButtonHoverColor: "rgba(0, 176, 96, 1)",
-            declineBackgroundColor: "rgba(170, 50, 45, 1)",
-            declineButtonHoverColor: "rgba(140, 30, 25, 1)",
-            height: mediumScreen ? "35px" : "40px",
-            width: mediumScreen ? "90px" : "100px",
-            fontSize: mediumScreen ? "14px" : "16px",
-          }}
-          successButtonText="add"
-          declineButtonText="delete"
-          onSuccessButtonClick={addClickHandler}
-          onDeclineButtonClick={deleteClickHandler}
-        />
+        <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
+          <Box>
+            <Button
+              variant="contained"
+              sx={{
+                color: "white",
+                backgroundColor: "rgba(0, 206, 126, 1)",
+                borderRadius: "10px",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                height: mediumScreen ? "35px" : "40px",
+                width: mediumScreen ? "200px" : "230px",
+                fontSize: mediumScreen ? "14px" : "16px",
+                boxShadow: "4px 4px 4px 0px rgba(0, 0, 0, 0.1)",
+                "&:hover": {
+                  backgroundColor: "rgba(0, 176, 96, 1)",
+                },
+              }}
+              onClick={addNewCountryClickHandler}
+            >
+              Add New Country
+            </Button>
+          </Box>
+          <Box>
+            <CustomButtons
+              customStyle={{
+                successBackgroundColor: "rgba(0, 206, 126, 1)",
+                successButtonHoverColor: "rgba(0, 176, 96, 1)",
+                declineBackgroundColor: "rgba(170, 50, 45, 1)",
+                declineButtonHoverColor: "rgba(140, 30, 25, 1)",
+                height: mediumScreen ? "35px" : "40px",
+                width: mediumScreen ? "90px" : "100px",
+                fontSize: mediumScreen ? "14px" : "16px",
+              }}
+              successButtonText="add"
+              declineButtonText="delete"
+              onSuccessButtonClick={addClickHandler}
+              onDeclineButtonClick={deleteClickHandler}
+            />
+          </Box>
+        </Box>
       </Box>
       {showModal === "add" && (
         <CustomModal open={addOpen} handleClose={handleModalClose}>
@@ -121,6 +152,11 @@ const BanksHeader = () => {
           handleClose={handleConfirmDeleteModalClose}
           setShowModal={setShowModal}
         />
+      )}
+      {showModal === "add-new-country" && (
+        <CustomModal open={newCountryOpen} handleClose={handleModalClose}>
+          <AddNewCountryModal setShowModal={setShowModal} />
+        </CustomModal>
       )}
     </>
   );
