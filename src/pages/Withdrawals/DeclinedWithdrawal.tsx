@@ -15,91 +15,74 @@ import TableCell from "@mui/material/TableCell";
 import React from "react";
 import ReleaseWithdrawalModal from "../../components/WithdrawalModals/ReleaseWithdrawalModal";
 
+const declinedWithdrawalTableHeading = [
+  "Date",
+  "Source",
+  "Reference",
+  "Currency",
+  "Total Amount",
+  "Recipient",
+  "Decline Reason",
+  "Release All",
+];
+
+const tableRowData = [
+  {
+    id: 1,
+    date: "29 Aug 2023",
+    source: "Text Field",
+    reference: "Text Field",
+    currency: "GBP",
+    totalAmount: 20200,
+    recipient: "Text Field",
+    declineReason: "View",
+    release: "Release",
+    releaseCheckbox: false,
+  },
+  {
+    id: 2,
+    date: "29 Aug 2023",
+    source: "Text Field",
+    reference: "Text Field",
+    currency: "GBP",
+    totalAmount: 20200,
+    recipient: "Text Field",
+    declineReason: "View",
+    release: "Release",
+    releaseCheckbox: false,
+  },
+  {
+    id: 3,
+    date: "29 Aug 2023",
+    source: "Text Field",
+    reference: "Text Field",
+    currency: "GBP",
+    totalAmount: 20200,
+    recipient: "Text Field",
+    declineReason: "View",
+    release: "Release",
+    releaseCheckbox: false,
+  },
+  {
+    id: 4,
+    date: "29 Aug 2023",
+    source: "Text Field",
+    reference: "Text Field",
+    currency: "GBP",
+    totalAmount: 20200,
+    recipient: "Text Field",
+    declineReason: "View",
+    release: "Release",
+    releaseCheckbox: false,
+  },
+];
 const DeclinedWithdrawal = () => {
-  const declinedWithdrawalTableHeading = [
-    "Date",
-    "Source",
-    "Reference",
-    "Currency",
-    "Total Amount",
-    "Recipient",
-    "Decline Reason",
-    "Release All",
-  ];
-
-  const createDeclinedWithdrawalData = (
-    id: number,
-    date: string,
-    source: string,
-    reference: string,
-    currency: string,
-    totalAmount: number,
-    recipient: string,
-    declineReason: string,
-    release: string
-  ) => {
-    return {
-      id,
-      date,
-      source,
-      reference,
-      currency,
-      totalAmount,
-      recipient,
-      declineReason,
-      release,
-    };
-  };
-
-  const declinedWithdrawalRowData = [
-    createDeclinedWithdrawalData(
-      1,
-      "29 Aug 2023",
-      "Text Field",
-      "Text Field",
-      "GBP",
-      20200,
-      "Text Field",
-      "View",
-      "Release"
-    ),
-    createDeclinedWithdrawalData(
-      2,
-      "29 Aug 2023",
-      "Text Field",
-      "Text Field",
-      "GBP",
-      20200,
-      "Text Field",
-      "View",
-      "Release"
-    ),
-    createDeclinedWithdrawalData(
-      3,
-      "29 Aug 2023",
-      "Text Field",
-      "Text Field",
-      "GBP",
-      20200,
-      "Text Field",
-      "View",
-      "Release"
-    ),
-    createDeclinedWithdrawalData(
-      4,
-      "29 Aug 2023",
-      "Text Field",
-      "Text Field",
-      "GBP",
-      20200,
-      "Text Field",
-      "View",
-      "Release"
-    ),
-  ];
-
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalType, setModalType] = React.useState("");
+  const [declinedWithdrawalRowData, setDeclinedWithdrawalRowData] =
+    React.useState(tableRowData);
+  const [releaseAllChecked, setReleaseAllChecked] = React.useState(false);
+  const [totalSelected, setTotalSelected] = React.useState(0);
   const mediumScreen = useMediaQuery(
     "(min-width: 1100px) and (max-width:1500px)"
   );
@@ -110,9 +93,35 @@ const DeclinedWithdrawal = () => {
   };
 
   const releaseAllWithdrawals = () => {
+    const countOfItemsSelected = declinedWithdrawalRowData.filter(
+      (row) => row.releaseCheckbox
+    ).length;
+    setTotalSelected(countOfItemsSelected);
     setModalOpen(true);
     setModalType("release-modal");
     console.log(modalType);
+  };
+
+  const releaseAllCheckboxChangeHanlder = (e: any) => {
+    const isChecked = e.target.checked;
+    setReleaseAllChecked(isChecked);
+    setDeclinedWithdrawalRowData((prevData) =>
+      prevData.map((row) => ({ ...row, releaseCheckbox: isChecked }))
+    );
+  };
+
+  const handleCheckboxChange = (id: any) => {
+    const updatedRowData = declinedWithdrawalRowData.map((row) => {
+      if (row.id === id) {
+        return {
+          ...row,
+          releaseCheckbox: !row.releaseCheckbox,
+        };
+      }
+      return row;
+    });
+    setDeclinedWithdrawalRowData(updatedRowData);
+    setReleaseAllChecked(updatedRowData.every((row) => row.releaseCheckbox));
   };
 
   return (
@@ -149,6 +158,8 @@ const DeclinedWithdrawal = () => {
                               color: "#005640",
                             },
                           }}
+                          checked={releaseAllChecked}
+                          onChange={releaseAllCheckboxChangeHanlder}
                         />
                         <Button
                           variant="contained"
@@ -207,6 +218,8 @@ const DeclinedWithdrawal = () => {
                         color: "#005640",
                       },
                     }}
+                    checked={row.releaseCheckbox}
+                    onChange={() => handleCheckboxChange(row.id)}
                   />
                   <Button
                     variant="contained"
@@ -238,6 +251,7 @@ const DeclinedWithdrawal = () => {
           open={modalOpen}
           handleClose={handleClose}
           setModalType={setModalType}
+          releaseCount={totalSelected}
         />
       )}
     </>

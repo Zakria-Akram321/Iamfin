@@ -8,12 +8,14 @@ interface ReleaseWithdrawalModalProps {
   open: boolean;
   handleClose: () => void;
   setModalType?: any;
+  releaseCount?: number;
 }
 
 const ReleaseWithdrawalModal: React.FC<ReleaseWithdrawalModalProps> = ({
   open,
   handleClose,
   setModalType,
+  releaseCount,
 }) => {
   const mediumScreen = useMediaQuery(
     "(min-width: 1100px) and (max-width:1500px)"
@@ -42,7 +44,7 @@ const ReleaseWithdrawalModal: React.FC<ReleaseWithdrawalModalProps> = ({
                 fontSize: mediumScreen ? "30px" : "38px",
               }}
             >
-              10
+              {releaseCount}
             </b>{" "}
             Payments?
           </Box>

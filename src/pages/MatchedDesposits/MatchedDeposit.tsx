@@ -18,118 +18,126 @@ import React from "react";
 import ReleaseDepositModal from "../../components/MatchedDeposits/ReleaseDepositModal";
 import DeclineDepositModal from "../../components/MatchedDeposits/DeclineDepositModal";
 
+const tableHeadings = [
+  "Date",
+  "Source",
+  "Reference",
+  "Currency",
+  "Funding Amount",
+  "Currency",
+  "Received Amount",
+  "Recipient",
+  "Method",
+  "Release All",
+];
+
+const rows = [
+  {
+    id: 1,
+    date: "29 Aug 2023",
+    source: "Text Field",
+    reference: "Text Field",
+    currencyFunded: "GBP",
+    currencyReceived: "GBP",
+    fundingAmount: 20200,
+    receivedAmount: 300,
+    recipient: "Text Field",
+    method: "Auto",
+    release: "Release",
+    releaseCheckbox: false,
+  },
+  {
+    id: 2,
+    date: "29 Aug 2023",
+    source: "Text Field",
+    reference: "Text Field",
+    currencyFunded: "GBP",
+    currencyReceived: "GBP",
+    fundingAmount: 20200,
+    receivedAmount: 300,
+    recipient: "Text Field",
+    method: "Manual",
+    release: "Release",
+    releaseCheckbox: false,
+  },
+  {
+    id: 3,
+    date: "29 Aug 2023",
+    source: "Text Field",
+    reference: "Text Field",
+    currencyFunded: "GBP",
+    currencyReceived: "GBP",
+    fundingAmount: 20200,
+    receivedAmount: 300,
+    recipient: "Text Field",
+    method: "Auto",
+    release: "Release",
+    releaseCheckbox: false,
+  },
+  {
+    id: 4,
+    date: "29 Aug 2023",
+    source: "Text Field",
+    reference: "Text Field",
+    currencyFunded: "GBP",
+    currencyReceived: "GBP",
+    fundingAmount: 20200,
+    receivedAmount: 300,
+    recipient: "Text Field",
+    method: "Manual",
+    release: "Release",
+    releaseCheckbox: false,
+  },
+  {
+    id: 5,
+    date: "29 Aug 2023",
+    source: "Text Field",
+    reference: "Text Field",
+    currencyFunded: "GBP",
+    currencyReceived: "GBP",
+    fundingAmount: 20200,
+    receivedAmount: 300,
+    recipient: "Text Field",
+    method: "Auto",
+    release: "Release",
+    releaseCheckbox: false,
+  },
+  {
+    id: 6,
+    date: "29 Aug 2023",
+    source: "Text Field",
+    reference: "Text Field",
+    currencyFunded: "GBP",
+    currencyReceived: "GBP",
+    fundingAmount: 20200,
+    receivedAmount: 300,
+    recipient: "Text Field",
+    method: "Auto",
+    release: "Release",
+    releaseCheckbox: false,
+  },
+  {
+    id: 7,
+    date: "29 Aug 2023",
+    source: "Text Field",
+    reference: "Text Field",
+    currencyFunded: "GBP",
+    currencyReceived: "GBP",
+    fundingAmount: 20200,
+    receivedAmount: 300,
+    recipient: "Text Field",
+    method: "Manual",
+    release: "Release",
+    releaseCheckbox: false,
+  },
+];
+
 const MatchedDeposit = () => {
-  const createData = (
-    id: number,
-    date: string,
-    source: string,
-    reference: string,
-    currencyFunded: string,
-    fundingAmount: number,
-    currencyReceived: string,
-    receivedAmount: number,
-    recipient: string,
-    method: string,
-    release: string
-  ) => {
-    return {
-      id,
-      date,
-      source,
-      reference,
-      currencyFunded,
-      fundingAmount,
-      currencyReceived,
-      receivedAmount,
-      recipient,
-      method,
-      release,
-    };
-  };
-
-  const tableHeadings = [
-    "Date",
-    "Source",
-    "Reference",
-    "Currency",
-    "Funding Amount",
-    "Currency",
-    "Received Amount",
-    "Recipient",
-    "Method",
-    "Release All",
-  ];
-
-  const rows = [
-    createData(
-      1,
-      "29 Aug 2023",
-      "Text Field",
-      "Text Field",
-      "GBP",
-      20200,
-      "EUR",
-      300,
-      "Text Field",
-      "Auto",
-      "Release"
-    ),
-    createData(
-      2,
-      "29 Aug 2023",
-      "Text Field",
-      "Text Field",
-      "GBP",
-      20200,
-      "EUR",
-      300,
-      "Text Field",
-      "Manual",
-      "Release"
-    ),
-    createData(
-      3,
-      "29 Aug 2023",
-      "Text Field",
-      "Text Field",
-      "GBP",
-      20200,
-      "EUR",
-      300,
-      "Text Field",
-      "Manual",
-      "Release"
-    ),
-    createData(
-      4,
-      "29 Aug 2023",
-      "Text Field",
-      "Text Field",
-      "GBP",
-      20200,
-      "EUR",
-      300,
-      "Text Field",
-      "Auto",
-      "Release"
-    ),
-    createData(
-      5,
-      "29 Aug 2023",
-      "Text Field",
-      "Text Field",
-      "GBP",
-      20200,
-      "EUR",
-      300,
-      "Text Field",
-      "Auto",
-      "Release"
-    ),
-  ];
-
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalType, setModalType] = React.useState("");
+  const [matchDepositRowData, setMatchDepositRowData] = React.useState(rows);
+  const [releaseAllChecked, setReleaseAllChecked] = React.useState(false);
+  const [totalSelected, setTotalSelected] = React.useState(0);
   const mediumScreen = useMediaQuery(
     "(min-width: 1100px) and (max-width:1500px)"
   );
@@ -145,9 +153,35 @@ const MatchedDeposit = () => {
   };
 
   const releaseAllDeposits = () => {
+    const countOfItemsSelected = matchDepositRowData.filter(
+      (row) => row.releaseCheckbox
+    ).length;
+    setTotalSelected(countOfItemsSelected);
     setModalOpen(true);
     setModalType("release-modal");
     console.log(modalType);
+  };
+
+  const releaseAllCheckboxChangeHanlder = (e: any) => {
+    const isChecked = e.target.checked;
+    setReleaseAllChecked(isChecked);
+    setMatchDepositRowData((prevData) =>
+      prevData.map((row) => ({ ...row, releaseCheckbox: isChecked }))
+    );
+  };
+
+  const handleCheckboxChange = (id: any) => {
+    const updatedRowData = matchDepositRowData.map((row) => {
+      if (row.id === id) {
+        return {
+          ...row,
+          releaseCheckbox: !row.releaseCheckbox,
+        };
+      }
+      return row;
+    });
+    setMatchDepositRowData(updatedRowData);
+    setReleaseAllChecked(updatedRowData.every((row) => row.releaseCheckbox));
   };
 
   return (
@@ -170,7 +204,6 @@ const MatchedDeposit = () => {
         >
           Matched Desposit
         </Typography>
-        {/* <TableComponent tableHeadings={tableHeadings}> */}
         <TableContainer
           component={Paper}
           sx={{ p: "20px 15px", boxSizing: "border-box" }}
@@ -193,6 +226,8 @@ const MatchedDeposit = () => {
                                 color: "#005640",
                               },
                             }}
+                            checked={releaseAllChecked}
+                            onChange={releaseAllCheckboxChangeHanlder}
                           />
                           <Button
                             variant="contained"
@@ -216,7 +251,7 @@ const MatchedDeposit = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row: any) => (
+              {matchDepositRowData.map((row: any) => (
                 <TableRow key={row.id}>
                   <TableCell scope="row">{row.date}</TableCell>
                   <TableCell align="left">{row.source}</TableCell>
@@ -254,6 +289,8 @@ const MatchedDeposit = () => {
                             color: "#005640",
                           },
                         }}
+                        checked={row.releaseCheckbox}
+                        onChange={() => handleCheckboxChange(row.id)}
                       />
                       <Button
                         variant="contained"
@@ -282,7 +319,6 @@ const MatchedDeposit = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        {/* </TableComponent> */}
       </Box>
       {modalType === "decline-modal" && (
         <DeclineDepositModal
@@ -296,6 +332,7 @@ const MatchedDeposit = () => {
           open={modalOpen}
           handleClose={handleClose}
           setModalType={setModalType}
+          releaseCount={totalSelected}
         />
       )}
     </Layout>

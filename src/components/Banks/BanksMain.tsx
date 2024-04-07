@@ -1,6 +1,7 @@
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import BanksHeader from "./BanksHeader";
 import BanksTable from "./BanksTable";
+import React from "react";
 
 const data = [
   {
@@ -36,7 +37,7 @@ const data = [
     ],
   },
   {
-    country: "south africa",
+    country: "united kingdom",
     banks: [
       {
         id: 1,
@@ -70,12 +71,17 @@ const data = [
 ];
 
 const BanksMain = () => {
-  const getTableHeadings = (bankObject: any) => {
-    Object.keys(bankObject).filter((key) => key !== "id");
-  };
+  const [bankData, setBankData] = React.useState(data);
   const mediumScreen = useMediaQuery(
     "(min-width: 1100px) and (max-width:1500px)"
   );
+
+  const getTableHeadings = (bankObject: any) => {
+    const keys = Object.keys(bankObject).filter((key) => key !== "id");
+    return keys;
+  };
+
+  console.log(bankData);
 
   return (
     <Box
@@ -87,24 +93,29 @@ const BanksMain = () => {
       }}
     >
       <BanksHeader />
-      {data.map((singleBankObject: any) => (
+      {/* {bankData.map((singleBankObject: any) => ( */}
+      <>
         <Box sx={{ marginTop: "40px" }}>
-          <Typography
-            sx={{
-              textTransform: "uppercase",
-              fontSize: mediumScreen ? "18px" : "24px",
-              color: "#005640",
-              fontWeight: 700,
-            }}
-          >
-            {singleBankObject.country}
-          </Typography>
+          {/* <Typography
+              sx={{
+                textTransform: "uppercase",
+                fontSize: mediumScreen ? "18px" : "24px",
+                color: "#005640",
+                fontWeight: 700,
+              }}
+            >
+              {singleBankObject.country}
+            </Typography> */}
+
           <BanksTable
-            tableHeadings={getTableHeadings(singleBankObject.banks[0])}
-            banksData={singleBankObject.banks}
+          // tableHeadings={getTableHeadings(singleBankObject.banks[0])}
+          // banksData={singleBankObject.banks}
+          // country={singleBankObject.country}
+          // setBankData={setBankData}
           />
         </Box>
-      ))}
+      </>
+      {/* // ))} */}
     </Box>
   );
 };

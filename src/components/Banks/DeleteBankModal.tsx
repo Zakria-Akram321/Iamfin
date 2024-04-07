@@ -42,7 +42,9 @@ const DeleteBanksModal = ({
   setConfirmDeleteModal,
   modalData,
 }: any) => {
-  const [formValues, setFormValues] = React.useState(initialValues);
+  const [formValues, setFormValues] = React.useState(
+    modalData ? modalData : initialValues
+  );
   const mediumScreen = useMediaQuery(
     "(min-width: 1100px) and (max-width:1500px)"
   );
@@ -118,26 +120,17 @@ const DeleteBanksModal = ({
             </Typography>
           </Grid>
           <Grid item xs={5.9}>
-            {modalData ? (
-              <AddBanksTextField
-                name="accountName"
-                value={modalData?.accountName ? modalData.accountName : ""}
-                onChange={handleChange}
-                placeholder="Sample Text"
-              />
-            ) : (
-              <LiveSearch
-                results={results}
-                value={formValues.accountName}
-                renderItem={(item) => <p>{item.name}</p>}
-                onChange={handleAccountNameSearchChange}
-                onSelect={(item) =>
-                  setFormValues({ ...formValues, accountName: item.name })
-                }
-                name="accountName"
-                placeholder="Sample Text"
-              />
-            )}
+            <LiveSearch
+              results={results}
+              value={formValues.accountName}
+              renderItem={(item) => <p>{item.name}</p>}
+              onChange={handleAccountNameSearchChange}
+              onSelect={(item) =>
+                setFormValues({ ...formValues, accountName: item.name })
+              }
+              name="accountName"
+              placeholder="Sample Text"
+            />
           </Grid>
         </Grid>
         <Grid
@@ -159,11 +152,7 @@ const DeleteBanksModal = ({
           <Grid item xs={5.9}>
             <AddBanksTextField
               name="wireRoutingNumber"
-              value={
-                modalData?.wireRoutingNumber
-                  ? modalData.wireRoutingNumber
-                  : formValues.wireRoutingNumber
-              }
+              value={formValues.wireRoutingNumber}
               onChange={handleChange}
               placeholder="Sample Text"
             />
@@ -186,30 +175,17 @@ const DeleteBanksModal = ({
             </Typography>
           </Grid>
           <Grid item xs={5.9}>
-            {modalData ? (
-              <AddBanksTextField
-                name="accountNumber"
-                value={
-                  modalData?.accountNumber
-                    ? modalData.accountNumber
-                    : formValues.accountNumber
-                }
-                onChange={handleChange}
-                placeholder="Sample Text"
-              />
-            ) : (
-              <LiveSearch
-                results={accountNumberResults}
-                value={formValues.accountNumber}
-                renderItem={(item) => <p>{item.name}</p>}
-                onChange={handleAccountNumberSearchChange}
-                onSelect={(item) =>
-                  setFormValues({ ...formValues, accountNumber: item.name })
-                }
-                name="accountNumber"
-                placeholder="Sample Text"
-              />
-            )}
+            <LiveSearch
+              results={accountNumberResults}
+              value={formValues.accountNumber}
+              renderItem={(item) => <p>{item.name}</p>}
+              onChange={handleAccountNumberSearchChange}
+              onSelect={(item) =>
+                setFormValues({ ...formValues, accountNumber: item.name })
+              }
+              name="accountNumber"
+              placeholder="Sample Text"
+            />
           </Grid>
         </Grid>
         <Grid
@@ -231,11 +207,7 @@ const DeleteBanksModal = ({
           <Grid item xs={5.9}>
             <AddBanksTextField
               name="routingNumber"
-              value={
-                modalData?.routingNumber
-                  ? modalData.routingNumber
-                  : formValues.routingNumber
-              }
+              value={formValues.routingNumber}
               onChange={handleChange}
               placeholder="Sample Text"
             />
@@ -255,11 +227,7 @@ const DeleteBanksModal = ({
           <Grid item xs={5.9}>
             <AddBanksTextField
               name="bankAddress"
-              value={
-                modalData?.bankAddress
-                  ? modalData.bankAddress
-                  : formValues.bankAddress
-              }
+              value={formValues.bankAddress}
               onChange={handleChange}
               placeholder="Sample Text"
               multiline
@@ -285,11 +253,7 @@ const DeleteBanksModal = ({
           <Grid item xs={5.9}>
             <AddBanksTextField
               name="reference"
-              value={
-                modalData?.reference
-                  ? modalData.reference
-                  : formValues.reference
-              }
+              value={formValues.reference}
               onChange={handleChange}
               placeholder="Sample Text"
             />

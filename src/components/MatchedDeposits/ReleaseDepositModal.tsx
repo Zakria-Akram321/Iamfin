@@ -8,12 +8,14 @@ interface ReleaseDepositModalProps {
   open: boolean;
   handleClose: () => void;
   setModalType?: any;
+  releaseCount?: number
 }
 
 const ReleaseDepositModal: React.FC<ReleaseDepositModalProps> = ({
   open,
   handleClose,
   setModalType,
+  releaseCount
 }) => {
   const mediumScreen = useMediaQuery(
     "(min-width: 1100px) and (max-width:1500px)"
@@ -39,7 +41,7 @@ const ReleaseDepositModal: React.FC<ReleaseDepositModalProps> = ({
                 fontSize: mediumScreen ? "30px" : "38px",
               }}
             >
-              12
+              {releaseCount}
             </b>{" "}
             Payments?
           </Box>

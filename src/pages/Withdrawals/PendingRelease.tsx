@@ -17,84 +17,75 @@ import React from "react";
 import ReleaseWithdrawalModal from "../../components/WithdrawalModals/ReleaseWithdrawalModal";
 import DeclineWithdrawalModal from "../../components/WithdrawalModals/DeclineWithdrawalModal";
 
+const pendingReleaseTableHeading = [
+  "Date",
+  "Source",
+  "Reference",
+  "Currency",
+  "Total Amount",
+  "Recipient",
+  "Decline Reason",
+  "Release All",
+];
+
+const tableRowData = [
+  {
+    id: 1,
+    date: "29 Aug 2023",
+    source: "Text Field",
+    reference: "Text Field",
+    currency: "GBP",
+    totalAmount: 20200,
+    recipient: "Text Field",
+    declineReason: "View",
+    release: "Release",
+    releaseCheckbox: false,
+  },
+  {
+    id: 2,
+    date: "29 Aug 2023",
+    source: "Text Field",
+    reference: "Text Field",
+    currency: "GBP",
+    totalAmount: 20200,
+    recipient: "Text Field",
+    declineReason: "View",
+    release: "Release",
+    releaseCheckbox: false,
+  },
+  {
+    id: 3,
+    date: "29 Aug 2023",
+    source: "Text Field",
+    reference: "Text Field",
+    currency: "GBP",
+    totalAmount: 20200,
+    recipient: "Text Field",
+    declineReason: "View",
+    release: "Release",
+    releaseCheckbox: false,
+  },
+  {
+    id: 4,
+    date: "29 Aug 2023",
+    source: "Text Field",
+    reference: "Text Field",
+    currency: "GBP",
+    totalAmount: 20200,
+    recipient: "Text Field",
+    declineReason: "View",
+    release: "Release",
+    releaseCheckbox: false,
+  },
+];
+
 const PendingRelease = () => {
-  const pendingReleaseTableHeading = [
-    "Date",
-    "Source",
-    "Reference",
-    "Currency",
-    "Total Amount",
-    "Recipient",
-    "Release All",
-  ];
-
-  const createReleasePendingData = (
-    id: number,
-    date: string,
-    source: string,
-    reference: string,
-    currency: string,
-    totalAmount: number,
-    recipient: string,
-    release: string
-  ) => {
-    return {
-      id,
-      date,
-      source,
-      reference,
-      currency,
-      totalAmount,
-      recipient,
-      release,
-    };
-  };
-
-  const releasePendingRowData = [
-    createReleasePendingData(
-      1,
-      "29 Aug 2023",
-      "Text Field",
-      "Text Field",
-      "GBP",
-      20200,
-      "Text Field",
-      "Release"
-    ),
-    createReleasePendingData(
-      2,
-      "29 Aug 2023",
-      "Text Field",
-      "Text Field",
-      "GBP",
-      20200,
-      "Text Field",
-      "Release"
-    ),
-    createReleasePendingData(
-      3,
-      "29 Aug 2023",
-      "Text Field",
-      "Text Field",
-      "GBP",
-      20200,
-      "Text Field",
-      "Release"
-    ),
-    createReleasePendingData(
-      4,
-      "29 Aug 2023",
-      "Text Field",
-      "Text Field",
-      "GBP",
-      20200,
-      "Text Field",
-      "Release"
-    ),
-  ];
-
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalType, setModalType] = React.useState("");
+  const [pendingReleaseRowData, setPendingReleaseRowData] =
+    React.useState(tableRowData);
+  const [releaseAllChecked, setReleaseAllChecked] = React.useState(false);
+  const [totalSelected, setTotalSelected] = React.useState(0);
   const mediumScreen = useMediaQuery(
     "(min-width: 1100px) and (max-width:1500px)"
   );
@@ -110,9 +101,35 @@ const PendingRelease = () => {
   };
 
   const releaseAllWithdrawals = () => {
+    const countOfItemsSelected = pendingReleaseRowData.filter(
+      (row) => row.releaseCheckbox
+    ).length;
+    setTotalSelected(countOfItemsSelected);
     setModalOpen(true);
     setModalType("release-modal");
     console.log(modalType);
+  };
+
+  const releaseAllCheckboxChangeHanlder = (e: any) => {
+    const isChecked = e.target.checked;
+    setReleaseAllChecked(isChecked);
+    setPendingReleaseRowData((prevData) =>
+      prevData.map((row) => ({ ...row, releaseCheckbox: isChecked }))
+    );
+  };
+
+  const handleCheckboxChange = (id: any) => {
+    const updatedRowData = pendingReleaseRowData.map((row) => {
+      if (row.id === id) {
+        return {
+          ...row,
+          releaseCheckbox: !row.releaseCheckbox,
+        };
+      }
+      return row;
+    });
+    setPendingReleaseRowData(updatedRowData);
+    setReleaseAllChecked(updatedRowData.every((row) => row.releaseCheckbox));
   };
 
   return (
@@ -150,6 +167,8 @@ const PendingRelease = () => {
                               color: "#005640",
                             },
                           }}
+                          checked={releaseAllChecked}
+                          onChange={releaseAllCheckboxChangeHanlder}
                         />
                         <Button
                           variant="contained"
@@ -173,7 +192,7 @@ const PendingRelease = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {releasePendingRowData.map((row: any) => (
+            {pendingReleaseRowData.map((row: any) => (
               <TableRow key={row.id}>
                 <TableCell scope="row">{row.date}</TableCell>
                 <TableCell align="left">{row.source}</TableCell>
@@ -185,6 +204,16 @@ const PendingRelease = () => {
                   sx={{ textDecoration: "underline", color: "#005640" }}
                 >
                   {row.recipient}
+                </TableCell>
+                <TableCell
+                  align="left"
+                  sx={{
+                    color: "#005640",
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                  }}
+                >
+                  {row.declineReason}
                 </TableCell>
                 <TableCell align="left">
                   <Box
@@ -199,6 +228,8 @@ const PendingRelease = () => {
                           color: "#005640",
                         },
                       }}
+                      checked={row.releaseCheckbox}
+                      onChange={() => handleCheckboxChange(row.id)}
                     />
                     <Button
                       variant="contained"
@@ -233,6 +264,7 @@ const PendingRelease = () => {
           open={modalOpen}
           handleClose={handleClose}
           setModalType={setModalType}
+          releaseCount={totalSelected}
         />
       )}
       {modalType === "decline-modal" && (

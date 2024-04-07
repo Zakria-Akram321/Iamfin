@@ -129,6 +129,22 @@ const ReasonForMatchModal: React.FC<ReasonForMatchModalProps> = ({
                   onChange={(e: any) => setProofOfPayment(e.target.files[0])}
                 />
               </Button>
+              <Button
+                variant="contained"
+                sx={{
+                  textTransform: "uppercase",
+                  backgroundColor: "rgba(0, 206, 126, 1)",
+                  width: mediumScreen ? "110px" : "120px",
+                  fontSize: mediumScreen ? "10px" : "12px",
+                  fontWeight: 700,
+                  letterSpacing: "1.2px",
+                  "&:hover": {
+                    backgroundColor: "rgba(0, 176, 96, 1)",
+                  },
+                }}
+              >
+                Upload
+              </Button>
               <Typography
                 sx={{
                   color: "rgba(20, 48, 42, 1)",
