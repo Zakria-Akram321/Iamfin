@@ -17,7 +17,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ExpandIcon from "../../Assets/expand-icon.png";
 import DeleteBanksModal from "./DeleteBankModal";
 import ConfirmDeleteAccount from "./ConfirmDeleteAccount";
-import { CatchingPokemon } from "@mui/icons-material";
 
 const expandBankData = {
   bankName: "FNB",
@@ -28,6 +27,8 @@ const expandBankData = {
   routingNumber: "6676676",
   bankAddress: "New York,  USA",
   reference: "XYZ",
+  bankFile:"/test.png",
+  email:"test@test.com"
 };
 
 const data = [
@@ -111,8 +112,6 @@ const BanksTable: React.FC<BanksTableProps> = () => {
   const [confirmDeleteModalByIcon, setConfirmDeleteModalByIcon] =
     React.useState(false);
   const [bankData, setBankData] = React.useState(data);
-  const [defaultBank, setDefaultBank] = React.useState(false);
-  const [intlDefault, setIntlDefault] = React.useState(false);
   const mediumScreen = useMediaQuery(
     "(min-width: 1100px) and (max-width:1500px)"
   );
@@ -186,7 +185,7 @@ const BanksTable: React.FC<BanksTableProps> = () => {
   return (
     <>
       {bankData.map((table: any, index: number) => (
-        <Box sx={{ marginTop: "40px" }}>
+        <Box sx={{ marginTop: "40px" }} key={index}>
           <Typography
             sx={{
               textTransform: "uppercase",
@@ -297,8 +296,7 @@ const BanksTable: React.FC<BanksTableProps> = () => {
                             zIndex: "2",
                           }}
                           name="default"
-                          // checked={row.intlDefault ? true : false}
-                          onChange={(e: any) =>
+                          onChange={() =>
                             defaultClickHandler(table.country, row.id)
                           }
                         />
@@ -319,36 +317,6 @@ const BanksTable: React.FC<BanksTableProps> = () => {
                           <Box />
                         )}
                       </Box>
-                      {/* <Box
-                        sx={{
-                          width: "100%",
-                          display: "flex",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            height: mediumScreen ? "16px" : "20px",
-                            width: mediumScreen ? "16px" : "20px",
-                            border: "1px solid rgba(0, 86, 64, 1)",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            borderRadius: "3px",
-                          }}
-                        >
-                          {row.default && (
-                            <Box
-                              sx={{
-                                backgroundColor: "rgba(0, 86, 64, 1)",
-                                height: mediumScreen ? "8px" : "10px",
-                                width: mediumScreen ? "8px" : "10px",
-                                borderRadius: mediumScreen ? "2px" : "3px",
-                              }}
-                            ></Box>
-                          )}
-                        </Box>
-                      </Box> */}
                     </TableCell>
                     <TableCell
                       sx={{
@@ -381,7 +349,7 @@ const BanksTable: React.FC<BanksTableProps> = () => {
                           }}
                           name="intlDefault"
                           // checked={row.intlDefault ? true : false}
-                          onChange={(e: any) =>
+                          onChange={() =>
                             intlDefaultClickHandler(table.country, row.id)
                           }
                         />

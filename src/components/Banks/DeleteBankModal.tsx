@@ -89,6 +89,8 @@ const DeleteBanksModal = ({
     setaccountNumberResults(filteredValue);
   };
 
+  const formSubmitHandler = () => {};
+
   return (
     <>
       <Box>
@@ -103,179 +105,181 @@ const DeleteBanksModal = ({
         >
           Delete accountName Account
         </Typography>
-        <Grid
-          container
-          alignItems="center"
-          justifyContent="space-between"
-          mb="10px"
-        >
-          <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-            <Typography
-              sx={{
-                color: "rgba(20, 48, 42, 1)",
-                fontSize: mediumScreen ? "15px" : "18px",
+        <form onSubmit={formSubmitHandler}>
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="space-between"
+            mb="10px"
+          >
+            <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+              <Typography
+                sx={{
+                  color: "rgba(20, 48, 42, 1)",
+                  fontSize: mediumScreen ? "15px" : "18px",
+                }}
+              >
+                Account Name:
+              </Typography>
+            </Grid>
+            <Grid item xs={5.9}>
+              <LiveSearch
+                results={results}
+                value={formValues.accountName}
+                renderItem={(item) => <p>{item.name}</p>}
+                onChange={handleAccountNameSearchChange}
+                onSelect={(item) =>
+                  setFormValues({ ...formValues, accountName: item.name })
+                }
+                name="accountName"
+                placeholder="Sample Text"
+              />
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="space-between"
+            mb="10px"
+          >
+            <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+              <Typography
+                sx={{
+                  color: "rgba(20, 48, 42, 1)",
+                  fontSize: mediumScreen ? "15px" : "18px",
+                }}
+              >
+                ACH and Wire Routing Number:
+              </Typography>
+            </Grid>
+            <Grid item xs={5.9}>
+              <AddBanksTextField
+                name="wireRoutingNumber"
+                value={formValues.wireRoutingNumber}
+                onChange={handleChange}
+                placeholder="Sample Text"
+              />
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="space-between"
+            mb="10px"
+          >
+            <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+              <Typography
+                sx={{
+                  color: "rgba(20, 48, 42, 1)",
+                  fontSize: mediumScreen ? "15px" : "18px",
+                }}
+              >
+                Account Number:
+              </Typography>
+            </Grid>
+            <Grid item xs={5.9}>
+              <LiveSearch
+                results={accountNumberResults}
+                value={formValues.accountNumber}
+                renderItem={(item) => <p>{item.name}</p>}
+                onChange={handleAccountNumberSearchChange}
+                onSelect={(item) =>
+                  setFormValues({ ...formValues, accountNumber: item.name })
+                }
+                name="accountNumber"
+                placeholder="Sample Text"
+              />
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="space-between"
+            mb="10px"
+          >
+            <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+              <Typography
+                sx={{
+                  color: "rgba(20, 48, 42, 1)",
+                  fontSize: mediumScreen ? "15px" : "18px",
+                }}
+              >
+                Routing Number:
+              </Typography>
+            </Grid>
+            <Grid item xs={5.9}>
+              <AddBanksTextField
+                name="routingNumber"
+                value={formValues.routingNumber}
+                onChange={handleChange}
+                placeholder="Sample Text"
+              />
+            </Grid>
+          </Grid>
+          <Grid container justifyContent="space-between" mb="10px">
+            <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+              <Typography
+                sx={{
+                  color: "rgba(20, 48, 42, 1)",
+                  fontSize: mediumScreen ? "15px" : "18px",
+                }}
+              >
+                Bank Address:
+              </Typography>
+            </Grid>
+            <Grid item xs={5.9}>
+              <AddBanksTextField
+                name="bankAddress"
+                value={formValues.bankAddress}
+                onChange={handleChange}
+                placeholder="Sample Text"
+                multiline
+              />
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="space-between"
+            mb="10px"
+          >
+            <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+              <Typography
+                sx={{
+                  color: "rgba(20, 48, 42, 1)",
+                  fontSize: mediumScreen ? "15px" : "18px",
+                }}
+              >
+                Reference:
+              </Typography>
+            </Grid>
+            <Grid item xs={5.9}>
+              <AddBanksTextField
+                name="reference"
+                value={formValues.reference}
+                onChange={handleChange}
+                placeholder="Sample Text"
+              />
+            </Grid>
+          </Grid>
+          <Box sx={{ display: "flex", justifyContent: "center", mt: "50px" }}>
+            <CustomButtons
+              customStyle={{
+                successBackgroundColor: "rgba(0, 206, 126, 1)",
+                successButtonHoverColor: "rgba(0, 176, 96, 1)",
+                declineBackgroundColor: "rgba(170, 50, 45, 1)",
+                declineButtonHoverColor: "rgba(140, 30, 25, 1)",
+                height: mediumScreen ? "35px" : "40px",
+                width: mediumScreen ? "90px" : "100px",
+                fontSize: mediumScreen ? "12px" : "16px",
               }}
-            >
-              Account Name:
-            </Typography>
-          </Grid>
-          <Grid item xs={5.9}>
-            <LiveSearch
-              results={results}
-              value={formValues.accountName}
-              renderItem={(item) => <p>{item.name}</p>}
-              onChange={handleAccountNameSearchChange}
-              onSelect={(item) =>
-                setFormValues({ ...formValues, accountName: item.name })
-              }
-              name="accountName"
-              placeholder="Sample Text"
+              successButtonText="delete"
+              declineButtonText="cancel"
+              onSuccessButtonClick={deleteClickHandler}
+              onDeclineButtonClick={cancelClickHandler}
             />
-          </Grid>
-        </Grid>
-        <Grid
-          container
-          alignItems="center"
-          justifyContent="space-between"
-          mb="10px"
-        >
-          <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-            <Typography
-              sx={{
-                color: "rgba(20, 48, 42, 1)",
-                fontSize: mediumScreen ? "15px" : "18px",
-              }}
-            >
-              ACH and Wire Routing Number:
-            </Typography>
-          </Grid>
-          <Grid item xs={5.9}>
-            <AddBanksTextField
-              name="wireRoutingNumber"
-              value={formValues.wireRoutingNumber}
-              onChange={handleChange}
-              placeholder="Sample Text"
-            />
-          </Grid>
-        </Grid>
-        <Grid
-          container
-          alignItems="center"
-          justifyContent="space-between"
-          mb="10px"
-        >
-          <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-            <Typography
-              sx={{
-                color: "rgba(20, 48, 42, 1)",
-                fontSize: mediumScreen ? "15px" : "18px",
-              }}
-            >
-              Account Number:
-            </Typography>
-          </Grid>
-          <Grid item xs={5.9}>
-            <LiveSearch
-              results={accountNumberResults}
-              value={formValues.accountNumber}
-              renderItem={(item) => <p>{item.name}</p>}
-              onChange={handleAccountNumberSearchChange}
-              onSelect={(item) =>
-                setFormValues({ ...formValues, accountNumber: item.name })
-              }
-              name="accountNumber"
-              placeholder="Sample Text"
-            />
-          </Grid>
-        </Grid>
-        <Grid
-          container
-          alignItems="center"
-          justifyContent="space-between"
-          mb="10px"
-        >
-          <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-            <Typography
-              sx={{
-                color: "rgba(20, 48, 42, 1)",
-                fontSize: mediumScreen ? "15px" : "18px",
-              }}
-            >
-              Routing Number:
-            </Typography>
-          </Grid>
-          <Grid item xs={5.9}>
-            <AddBanksTextField
-              name="routingNumber"
-              value={formValues.routingNumber}
-              onChange={handleChange}
-              placeholder="Sample Text"
-            />
-          </Grid>
-        </Grid>
-        <Grid container justifyContent="space-between" mb="10px">
-          <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-            <Typography
-              sx={{
-                color: "rgba(20, 48, 42, 1)",
-                fontSize: mediumScreen ? "15px" : "18px",
-              }}
-            >
-              Bank Address:
-            </Typography>
-          </Grid>
-          <Grid item xs={5.9}>
-            <AddBanksTextField
-              name="bankAddress"
-              value={formValues.bankAddress}
-              onChange={handleChange}
-              placeholder="Sample Text"
-              multiline
-            />
-          </Grid>
-        </Grid>
-        <Grid
-          container
-          alignItems="center"
-          justifyContent="space-between"
-          mb="10px"
-        >
-          <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-            <Typography
-              sx={{
-                color: "rgba(20, 48, 42, 1)",
-                fontSize: mediumScreen ? "15px" : "18px",
-              }}
-            >
-              Reference:
-            </Typography>
-          </Grid>
-          <Grid item xs={5.9}>
-            <AddBanksTextField
-              name="reference"
-              value={formValues.reference}
-              onChange={handleChange}
-              placeholder="Sample Text"
-            />
-          </Grid>
-        </Grid>
-        <Box sx={{ display: "flex", justifyContent: "center", mt: "50px" }}>
-          <CustomButtons
-            customStyle={{
-              successBackgroundColor: "rgba(0, 206, 126, 1)",
-              successButtonHoverColor: "rgba(0, 176, 96, 1)",
-              declineBackgroundColor: "rgba(170, 50, 45, 1)",
-              declineButtonHoverColor: "rgba(140, 30, 25, 1)",
-              height: mediumScreen ? "35px" : "40px",
-              width: mediumScreen ? "90px" : "100px",
-              fontSize: mediumScreen ? "12px" : "16px",
-            }}
-            successButtonText="delete"
-            declineButtonText="cancel"
-            onSuccessButtonClick={deleteClickHandler}
-            onDeclineButtonClick={cancelClickHandler}
-          />
-        </Box>
+          </Box>
+        </form>
       </Box>
     </>
   );

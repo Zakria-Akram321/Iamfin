@@ -39,6 +39,8 @@ const AddBanksModal = ({ setShowModal }: any) => {
     e.preventDefault();
   };
 
+  const formSubmitHandler = () => {};
+
   return (
     <Box>
       <Typography
@@ -52,244 +54,246 @@ const AddBanksModal = ({ setShowModal }: any) => {
       >
         Add new bank account
       </Typography>
-      <Grid
-        container
-        alignItems="center"
-        justifyContent="space-between"
-        mb="10px"
-      >
-        <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-          <Typography
-            sx={{
-              color: "rgba(20, 48, 42, 1)",
-              fontSize: mediumScreen ? "15px" : "18px",
-            }}
-          >
-            Country:
-          </Typography>
-        </Grid>
-        <Grid item xs={5.9}>
-          <Select
-            value={formValues.country}
-            name="country"
-            onChange={handleChange}
-            displayEmpty
-            inputProps={{ "aria-label": "Without label" }}
-            sx={{
-              width: "258px",
-              height: mediumScreen ? "32.26px" : "42.26px",
-              backgroundColor: "rgba(240, 243, 238, 1)",
-              border: "none",
-              borderRadius: "5px",
-              fontSize: mediumScreen ? "12px" : "16px",
-              "& .MuiSelect-outlined": {
-                color: "rgba(0, 86, 64, 1)",
-                em: {
-                  fontStyle: "normal",
-                },
-              },
-              "& .MuiOutlinedInput-notchedOutline": {
+      <form onSubmit={formSubmitHandler}>
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="space-between"
+          mb="10px"
+        >
+          <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+            <Typography
+              sx={{
+                color: "rgba(20, 48, 42, 1)",
+                fontSize: mediumScreen ? "15px" : "18px",
+              }}
+            >
+              Country:
+            </Typography>
+          </Grid>
+          <Grid item xs={5.9}>
+            <Select
+              value={formValues.country}
+              name="country"
+              onChange={handleChange}
+              displayEmpty
+              inputProps={{ "aria-label": "Without label" }}
+              sx={{
+                width: "258px",
+                height: mediumScreen ? "32.26px" : "42.26px",
+                backgroundColor: "rgba(240, 243, 238, 1)",
                 border: "none",
-              },
-            }}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value="usa">USA</MenuItem>
-            <MenuItem value="uk">UK</MenuItem>
-            <MenuItem value="ger">Germany</MenuItem>
-          </Select>
+                borderRadius: "5px",
+                fontSize: mediumScreen ? "12px" : "16px",
+                "& .MuiSelect-outlined": {
+                  color: "rgba(0, 86, 64, 1)",
+                  em: {
+                    fontStyle: "normal",
+                  },
+                },
+                "& .MuiOutlinedInput-notchedOutline": {
+                  border: "none",
+                },
+              }}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value="usa">USA</MenuItem>
+              <MenuItem value="uk">UK</MenuItem>
+              <MenuItem value="ger">Germany</MenuItem>
+            </Select>
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid
-        container
-        alignItems="center"
-        justifyContent="space-between"
-        mb="10px"
-      >
-        <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-          <Typography
-            sx={{
-              color: "rgba(20, 48, 42, 1)",
-              fontSize: mediumScreen ? "15px" : "18px",
-            }}
-          >
-            Account Name:
-          </Typography>
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="space-between"
+          mb="10px"
+        >
+          <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+            <Typography
+              sx={{
+                color: "rgba(20, 48, 42, 1)",
+                fontSize: mediumScreen ? "15px" : "18px",
+              }}
+            >
+              Account Name:
+            </Typography>
+          </Grid>
+          <Grid item xs={5.9}>
+            <AddBanksTextField
+              name="accountName"
+              value={formValues.accountName}
+              onChange={handleChange}
+              placeholder="Sample Text"
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={5.9}>
-          <AddBanksTextField
-            name="accountName"
-            value={formValues.accountName}
-            onChange={handleChange}
-            placeholder="Sample Text"
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="space-between"
+          mb="10px"
+        >
+          <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+            <Typography
+              sx={{
+                color: "rgba(20, 48, 42, 1)",
+                fontSize: mediumScreen ? "15px" : "18px",
+              }}
+            >
+              Swift/IBAN Number
+            </Typography>
+          </Grid>
+          <Grid item xs={5.9}>
+            <AddBanksTextField
+              name="swiftIban"
+              value={formValues.swiftIban}
+              onChange={handleChange}
+              placeholder="Sample Text"
+            />
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="space-between"
+          mb="10px"
+        >
+          <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+            <Typography
+              sx={{
+                color: "rgba(20, 48, 42, 1)",
+                fontSize: mediumScreen ? "15px" : "18px",
+              }}
+            >
+              ACH and Wire Routing Number:
+            </Typography>
+          </Grid>
+          <Grid item xs={5.9}>
+            <AddBanksTextField
+              name="wireRoutingNumber"
+              value={formValues.wireRoutingNumber}
+              onChange={handleChange}
+              placeholder="Sample Text"
+            />
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="space-between"
+          mb="10px"
+        >
+          <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+            <Typography
+              sx={{
+                color: "rgba(20, 48, 42, 1)",
+                fontSize: mediumScreen ? "15px" : "18px",
+              }}
+            >
+              Account Number:
+            </Typography>
+          </Grid>
+          <Grid item xs={5.9}>
+            <AddBanksTextField
+              name="accountNumber"
+              value={formValues.accountNumber}
+              onChange={handleChange}
+              placeholder="Sample Text"
+            />
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="space-between"
+          mb="10px"
+        >
+          <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+            <Typography
+              sx={{
+                color: "rgba(20, 48, 42, 1)",
+                fontSize: mediumScreen ? "15px" : "18px",
+              }}
+            >
+              Routing Number:
+            </Typography>
+          </Grid>
+          <Grid item xs={5.9}>
+            <AddBanksTextField
+              name="routingNumber"
+              value={formValues.routingNumber}
+              onChange={handleChange}
+              placeholder="Sample Text"
+            />
+          </Grid>
+        </Grid>
+        <Grid container justifyContent="space-between" mb="10px">
+          <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+            <Typography
+              sx={{
+                color: "rgba(20, 48, 42, 1)",
+                fontSize: mediumScreen ? "15px" : "18px",
+              }}
+            >
+              Bank Address:
+            </Typography>
+          </Grid>
+          <Grid item xs={5.9}>
+            <AddBanksTextField
+              name="bankAddress"
+              value={formValues.bankAddress}
+              onChange={handleChange}
+              placeholder="Sample Text"
+              multiline
+            />
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="space-between"
+          mb="10px"
+        >
+          <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+            <Typography
+              sx={{
+                color: "rgba(20, 48, 42, 1)",
+                fontSize: mediumScreen ? "15px" : "18px",
+              }}
+            >
+              Reference:
+            </Typography>
+          </Grid>
+          <Grid item xs={5.9}>
+            <AddBanksTextField
+              name="reference"
+              value={formValues.reference}
+              onChange={handleChange}
+              placeholder="Sample Text"
+            />
+          </Grid>
+        </Grid>
+        <Box sx={{ display: "flex", justifyContent: "center", mt: "50px" }}>
+          <CustomButtons
+            customStyle={{
+              successBackgroundColor: "rgba(0, 206, 126, 1)",
+              successButtonHoverColor: "rgba(0, 176, 96, 1)",
+              declineBackgroundColor: "rgba(170, 50, 45, 1)",
+              declineButtonHoverColor: "rgba(140, 30, 25, 1)",
+              height: mediumScreen ? "35px" : "40px",
+              width: mediumScreen ? "90px" : "100px",
+              fontSize: mediumScreen ? "12px" : "16px",
+            }}
+            successButtonText="save"
+            declineButtonText="cancel"
+            onSuccessButtonClick={saveClickHandler}
+            onDeclineButtonClick={cancelClickHandler}
           />
-        </Grid>
-      </Grid>
-      <Grid
-        container
-        alignItems="center"
-        justifyContent="space-between"
-        mb="10px"
-      >
-        <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-          <Typography
-            sx={{
-              color: "rgba(20, 48, 42, 1)",
-              fontSize: mediumScreen ? "15px" : "18px",
-            }}
-          >
-            Swift/IBAN Number
-          </Typography>
-        </Grid>
-        <Grid item xs={5.9}>
-          <AddBanksTextField
-            name="swiftIban"
-            value={formValues.swiftIban}
-            onChange={handleChange}
-            placeholder="Sample Text"
-          />
-        </Grid>
-      </Grid>
-      <Grid
-        container
-        alignItems="center"
-        justifyContent="space-between"
-        mb="10px"
-      >
-        <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-          <Typography
-            sx={{
-              color: "rgba(20, 48, 42, 1)",
-              fontSize: mediumScreen ? "15px" : "18px",
-            }}
-          >
-            ACH and Wire Routing Number:
-          </Typography>
-        </Grid>
-        <Grid item xs={5.9}>
-          <AddBanksTextField
-            name="wireRoutingNumber"
-            value={formValues.wireRoutingNumber}
-            onChange={handleChange}
-            placeholder="Sample Text"
-          />
-        </Grid>
-      </Grid>
-      <Grid
-        container
-        alignItems="center"
-        justifyContent="space-between"
-        mb="10px"
-      >
-        <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-          <Typography
-            sx={{
-              color: "rgba(20, 48, 42, 1)",
-              fontSize: mediumScreen ? "15px" : "18px",
-            }}
-          >
-            Account Number:
-          </Typography>
-        </Grid>
-        <Grid item xs={5.9}>
-          <AddBanksTextField
-            name="accountNumber"
-            value={formValues.accountNumber}
-            onChange={handleChange}
-            placeholder="Sample Text"
-          />
-        </Grid>
-      </Grid>
-      <Grid
-        container
-        alignItems="center"
-        justifyContent="space-between"
-        mb="10px"
-      >
-        <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-          <Typography
-            sx={{
-              color: "rgba(20, 48, 42, 1)",
-              fontSize: mediumScreen ? "15px" : "18px",
-            }}
-          >
-            Routing Number:
-          </Typography>
-        </Grid>
-        <Grid item xs={5.9}>
-          <AddBanksTextField
-            name="routingNumber"
-            value={formValues.routingNumber}
-            onChange={handleChange}
-            placeholder="Sample Text"
-          />
-        </Grid>
-      </Grid>
-      <Grid container justifyContent="space-between" mb="10px">
-        <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-          <Typography
-            sx={{
-              color: "rgba(20, 48, 42, 1)",
-              fontSize: mediumScreen ? "15px" : "18px",
-            }}
-          >
-            Bank Address:
-          </Typography>
-        </Grid>
-        <Grid item xs={5.9}>
-          <AddBanksTextField
-            name="bankAddress"
-            value={formValues.bankAddress}
-            onChange={handleChange}
-            placeholder="Sample Text"
-            multiline
-          />
-        </Grid>
-      </Grid>
-      <Grid
-        container
-        alignItems="center"
-        justifyContent="space-between"
-        mb="10px"
-      >
-        <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-          <Typography
-            sx={{
-              color: "rgba(20, 48, 42, 1)",
-              fontSize: mediumScreen ? "15px" : "18px",
-            }}
-          >
-            Reference:
-          </Typography>
-        </Grid>
-        <Grid item xs={5.9}>
-          <AddBanksTextField
-            name="reference"
-            value={formValues.reference}
-            onChange={handleChange}
-            placeholder="Sample Text"
-          />
-        </Grid>
-      </Grid>
-      <Box sx={{ display: "flex", justifyContent: "center", mt: "50px" }}>
-        <CustomButtons
-          customStyle={{
-            successBackgroundColor: "rgba(0, 206, 126, 1)",
-            successButtonHoverColor: "rgba(0, 176, 96, 1)",
-            declineBackgroundColor: "rgba(170, 50, 45, 1)",
-            declineButtonHoverColor: "rgba(140, 30, 25, 1)",
-            height: mediumScreen ? "35px" : "40px",
-            width: mediumScreen ? "90px" : "100px",
-            fontSize: mediumScreen ? "12px" : "16px",
-          }}
-          successButtonText="save"
-          declineButtonText="cancel"
-          onSuccessButtonClick={saveClickHandler}
-          onDeclineButtonClick={cancelClickHandler}
-        />
-      </Box>
+        </Box>
+      </form>
     </Box>
   );
 };

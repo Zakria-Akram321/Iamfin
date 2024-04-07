@@ -23,6 +23,8 @@ const AddNewCountryModal = ({ setShowModal }: any) => {
     setShowModal("");
     e.preventDefault();
   };
+
+  const formSubmitHandler = () => {};
   return (
     <Box>
       <Typography
@@ -36,48 +38,50 @@ const AddNewCountryModal = ({ setShowModal }: any) => {
       >
         Add new country
       </Typography>
-      <Grid
-        container
-        alignItems="center"
-        justifyContent="space-between"
-        mb="10px"
-      >
-        <Grid item xs={5.9} sx={{ textAlign: "right" }}>
-          <Typography
-            sx={{
-              color: "rgba(20, 48, 42, 1)",
-              fontSize: mediumScreen ? "15px" : "18px",
+      <form onSubmit={formSubmitHandler}>
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="space-between"
+          mb="10px"
+        >
+          <Grid item xs={5.9} sx={{ textAlign: "right" }}>
+            <Typography
+              sx={{
+                color: "rgba(20, 48, 42, 1)",
+                fontSize: mediumScreen ? "15px" : "18px",
+              }}
+            >
+              Country Name:
+            </Typography>
+          </Grid>
+          <Grid item xs={5.9}>
+            <AddCountryTextField
+              name="countryName"
+              value={formValues.countryName}
+              onChange={handleChange}
+              placeholder="Sample Text"
+            />
+          </Grid>
+        </Grid>
+        <Box sx={{ display: "flex", justifyContent: "center", mt: "50px" }}>
+          <CustomButtons
+            customStyle={{
+              successBackgroundColor: "rgba(0, 206, 126, 1)",
+              successButtonHoverColor: "rgba(0, 176, 96, 1)",
+              declineBackgroundColor: "rgba(170, 50, 45, 1)",
+              declineButtonHoverColor: "rgba(140, 30, 25, 1)",
+              height: mediumScreen ? "35px" : "40px",
+              width: mediumScreen ? "90px" : "100px",
+              fontSize: mediumScreen ? "12px" : "16px",
             }}
-          >
-            Country Name:
-          </Typography>
-        </Grid>
-        <Grid item xs={5.9}>
-          <AddCountryTextField
-            name="countryName"
-            value={formValues.countryName}
-            onChange={handleChange}
-            placeholder="Sample Text"
+            successButtonText="save"
+            declineButtonText="cancel"
+            onSuccessButtonClick={saveClickHandler}
+            onDeclineButtonClick={cancelClickHandler}
           />
-        </Grid>
-      </Grid>
-      <Box sx={{ display: "flex", justifyContent: "center", mt: "50px" }}>
-        <CustomButtons
-          customStyle={{
-            successBackgroundColor: "rgba(0, 206, 126, 1)",
-            successButtonHoverColor: "rgba(0, 176, 96, 1)",
-            declineBackgroundColor: "rgba(170, 50, 45, 1)",
-            declineButtonHoverColor: "rgba(140, 30, 25, 1)",
-            height: mediumScreen ? "35px" : "40px",
-            width: mediumScreen ? "90px" : "100px",
-            fontSize: mediumScreen ? "12px" : "16px",
-          }}
-          successButtonText="save"
-          declineButtonText="cancel"
-          onSuccessButtonClick={saveClickHandler}
-          onDeclineButtonClick={cancelClickHandler}
-        />
-      </Box>
+        </Box>
+      </form>
     </Box>
   );
 };
